@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f0c24">
+<meta name="robots" content="noindex, nofollow">
+<title>Hit-Zeitreise</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<style>
+:root{
+  --bg:#0f0c24; --panel:#1a1638; --panel2:#262056; --line:#383170; --text:#f2f0ff; --muted:#a7a2d0;
+  --pink:#ff4fa3; --cyan:#4de1ff; --yellow:#ffe14d; --green:#6bffb8; --orange:#ff8a3d; --purple:#b66bff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--cyan)}
+code{background:#0c0a1e;padding:1px 5px;border-radius:5px;font-size:.92em}
+.hidden{display:none!important}
+.btn{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;line-height:1.2;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--cyan)}
+.btn.primary{background:linear-gradient(135deg,var(--pink),var(--orange));border:0;color:#160f2c;font-weight:700}
+.btn.small{padding:5px 9px;font-size:13px;border-radius:8px}
+.btn.icon{padding:5px 8px}
+.btn:disabled{opacity:.4;cursor:default}
+.btn svg{width:16px;height:16px}
+input,textarea,select{background:#0c0a1e;border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:100%;min-width:0}
+input[type=checkbox]{width:auto}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--cyan);outline-offset:-1px;border-color:transparent}
+.hint{color:var(--muted);font-size:13.5px;margin:4px 0 10px}
+h2{font-size:18px;margin:0 0 8px}
+h3{font-size:15px;margin:0 0 6px}
+
+/* ---------- Editor ---------- */
+#edit{max-width:1320px;margin:0 auto;padding:16px 16px 120px}
+.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.logo{font-weight:900;font-size:24px;letter-spacing:.3px;white-space:nowrap}
+.logo span{background:linear-gradient(90deg,var(--pink),var(--yellow),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tabs{display:flex;gap:4px;background:var(--panel);padding:4px;border-radius:12px;flex-wrap:wrap}
+.tabs button{background:none;border:0;padding:7px 14px;border-radius:9px;color:var(--muted)}
+.tabs button.on{background:var(--panel2);color:var(--text)}
+.spacer{flex:1}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.toolbar .search{width:220px}
+.count{color:var(--muted);font-size:13.5px;margin-left:auto}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1020px}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:left;font-weight:600;padding:6px}
+td{padding:4px 5px;border-top:1px solid var(--line);vertical-align:middle}
+td.n{color:var(--muted);font-variant-numeric:tabular-nums;width:40px;text-align:right;padding-right:10px}
+tr.ok td.n{box-shadow:inset 3px 0 var(--green)}
+tr.warn td.n{box-shadow:inset 3px 0 var(--orange)}
+td.yr{width:84px} td.st{width:84px} td.dz{width:120px}
+td.yt .wrap{display:flex;gap:4px}
+input.auto{border-color:var(--yellow);color:var(--yellow)}
+td.acts{white-space:nowrap;width:1%}
+tr.busy{opacity:.55}
+tr.busy .b-auto svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:36px 16px}
+.empty ol{display:inline-block;text-align:left;color:var(--muted);margin:10px 0 18px}
+.progress{color:var(--yellow);font-size:13.5px;min-height:20px;margin-bottom:6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.warnbox{background:#3a2210;border:1px solid var(--orange);color:#ffd7b5;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:14px}
+.okbox{background:#0f2f25;border:1px solid var(--green);color:#c8ffe8;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:14px}
+#c-qr svg{width:150px;height:150px;background:#fff;border-radius:10px;padding:6px}
+
+/* Vorschau-Leiste im Editor */
+.pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:40;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:8px 10px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 40px #0009;width:min(760px,calc(100% - 32px));flex-wrap:wrap}
+.pv-t{flex:1;min-width:140px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pv-t small{color:var(--muted);margin-left:6px}
+#pv-time{font-variant-numeric:tabular-nums;color:var(--cyan);min-width:40px}
+
+/* Druckvorschau */
+.preview{overflow:auto;background:#0b0918;border-radius:12px;padding:14px;margin-top:12px;max-height:75vh}
+.preview .sheets{zoom:.5}
+.sheet{width:210mm;height:297mm;background:#fff;display:grid;grid-template-columns:repeat(3,60mm);grid-template-rows:repeat(4,60mm);justify-content:center;align-content:center;margin:0 auto 10mm;position:relative}
+.sheet .lbl{position:absolute;top:8mm;left:0;right:0;text-align:center;font:3.2mm system-ui,sans-serif;color:#999}
+.card{width:60mm;height:60mm;position:relative;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.card.none{background:transparent}
+.card.fr{background:#15122e;box-shadow:inset 0 0 0 .15mm #8a86b8}
+.card.fr .r{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);border:.7mm solid}
+.card.fr .r1{width:56mm;height:56mm;border-color:var(--pink)}
+.card.fr .r2{width:49mm;height:49mm;border-color:var(--cyan)}
+.card.fr .r3{width:42mm;height:42mm;border-color:var(--yellow)}
+.card.fr .qr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:33mm;height:33mm;background:#fff;border-radius:2.5mm;padding:1.2mm}
+.card.fr .qr svg{width:100%;height:100%;display:block}
+.card.bk{color:#150f28;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:5mm 4mm;box-shadow:inset 0 0 0 .15mm #0003}
+.card.bk .ar{font-weight:800;font-size:4.2mm;line-height:1.15}
+.card.bk .yr{font-weight:900;font-size:17mm;line-height:1;letter-spacing:-.5mm}
+.card.bk .ti{font-style:italic;font-size:3.9mm;line-height:1.2}
+.card.bk .sm{font-size:3.3mm}
+.card.bk .xs{font-size:2.8mm}
+.c0{background:linear-gradient(135deg,#ff4fa3,#ffb86b)}
+.c1{background:linear-gradient(135deg,#ffe14d,#9dff6b)}
+.c2{background:linear-gradient(135deg,#4de1ff,#8c9bff)}
+.c3{background:linear-gradient(135deg,#c98bff,#ff7bd9)}
+.c4{background:linear-gradient(135deg,#6bffb8,#4de1ff)}
+.c5{background:linear-gradient(135deg,#ff8a3d,#ffe14d)}
+#print-out{display:none}
+
+/* ---------- Spielmodus (für Senioren: groß, wenige Knöpfe, alles automatisch) ---------- */
+#play{height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#2b1f63 0%,var(--bg) 60%);font-size:20px;user-select:none;-webkit-user-select:none}
+.pstart{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px;text-align:center}
+.pstart .logo{font-size:clamp(40px,9vw,72px)}
+.huge{font-size:clamp(26px,5vw,38px);padding:26px 56px;border-radius:24px;box-shadow:0 10px 40px #ff4fa355}
+.pstart p{color:var(--muted);max-width:520px;margin:0;font-size:19px}
+.pgame{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:16px;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom))}
+@media (orientation:landscape){ .pgame{grid-template-rows:none;grid-template-columns:minmax(0,1fr) minmax(320px,44%)} }
+.camwrap{position:relative;border-radius:24px;overflow:hidden;background:#000;min-height:0}
+.camwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.camwrap.mirror video{transform:scaleX(-1)}
+.camwrap .frame{position:absolute;left:50%;top:50%;width:min(62%,62vh);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:24px;border:5px solid var(--cyan);box-shadow:0 0 0 9999px #0007;transition:border-color .2s,box-shadow .2s}
+.camwrap.hit .frame{border-color:var(--green);box-shadow:0 0 0 9999px #0007,0 0 40px var(--green)}
+.camwrap .camhint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-weight:700;font-size:22px;text-shadow:0 2px 8px #000}
+.camwrap.err .frame,.camwrap.err .camhint{display:none}
+.camwrap .camerr{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:20px}
+.pinfo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;min-width:0}
+#p-status{font-size:clamp(22px,4vw,30px);font-weight:700;line-height:1.25;margin:0;min-height:2.5em;display:flex;align-items:center}
+#p-status.err{color:#ffb4a0}
+.eq{display:flex;gap:7px;align-items:flex-end;height:56px}
+.eq i{width:12px;height:12px;border-radius:6px;background:linear-gradient(var(--pink),var(--cyan))}
+.eq.on i{animation:eq .9s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}.eq i:nth-child(4){animation-delay:-.15s}.eq i:nth-child(5){animation-delay:-.45s}
+@keyframes eq{50%{height:56px}}
+.pbar{width:min(90%,420px);height:10px;background:#0c0a1e;border-radius:5px;overflow:hidden;visibility:hidden}
+.pbar div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink))}
+.pbtns{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(100%,460px)}
+.bigbtn{font-size:24px;font-weight:700;padding:22px 10px;border-radius:20px;border:2px solid var(--line);background:var(--panel2);display:flex;align-items:center;justify-content:center;gap:10px}
+.bigbtn svg{width:28px;height:28px}
+.bigbtn:disabled{opacity:.35}
+.gear{position:fixed;right:10px;top:max(10px,env(safe-area-inset-top));width:44px;height:44px;border-radius:50%;border:0;background:#0006;color:#fff8;font-size:22px;z-index:5}
+.seg{display:flex;background:#0c0a1e;border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{background:none;border:0;padding:8px 14px;border-radius:7px;color:var(--muted)}
+.seg button.on{background:var(--panel2);color:var(--text)}
+.sheetbox{position:fixed;inset:auto 0 0 0;max-height:90vh;overflow:auto;background:var(--panel);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom));z-index:45;box-shadow:0 -10px 40px #0009;font-size:16px}
+.sheetbox label{display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap}
+.sheetbox input[type=number]{width:80px}
+
+/* YouTube-Player: unsichtbar, außer in der Editor-Vorschau oder für den einmaligen Tipp auf iOS */
+#ytwrap{position:fixed;right:0;bottom:0;width:200px;height:200px;opacity:.001;pointer-events:none;z-index:0}
+#ytwrap iframe{width:100%;height:100%;border:0;display:block}
+body.pv-yt #ytwrap{opacity:1;pointer-events:auto;width:256px;height:144px;right:16px;bottom:90px;z-index:41;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px #0009}
+body.yt-tap #ytwrap{opacity:1;pointer-events:auto;left:50%;top:50%;right:auto;bottom:auto;width:320px;height:180px;transform:translate(-50%,-50%);clip-path:circle(40px at 50% 50%);z-index:61}
+.tapveil{position:fixed;inset:0;background:#0f0c24f2;z-index:60;display:none}
+body.yt-tap .tapveil{display:block}
+.tapveil .ring{position:fixed;left:50%;top:50%;width:96px;height:96px;transform:translate(-50%,-50%);border-radius:50%;border:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan);animation:pulse 1.4s ease-in-out infinite}
+.tapveil p{position:fixed;left:16px;right:16px;top:calc(50% + 70px);text-align:center}
+@keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.12)}}
+
+#toast{position:fixed;left:50%;top:16px;transform:translate(-50%,-150%);background:var(--panel2);border:1px solid var(--line);padding:10px 16px;border-radius:12px;z-index:90;transition:transform .25s;max-width:calc(100% - 32px);box-shadow:0 10px 30px #0008}
+#toast.on{transform:translate(-50%,0)}
+dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:16px;width:min(620px,calc(100% - 32px));padding:18px}
+dialog::backdrop{background:#000a}
+.dlg-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+
+@media (max-width:640px){ .toolbar .search{width:100%} .count{margin-left:0} }
+
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html,body{background:#fff!important}
+  body>*{display:none!important}
+  body>#print-out{display:block!important}
+  .sheet{margin:0;break-after:page;page-break-after:always}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .sheet .lbl{display:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== EDITOR ===================== -->
+<section id="edit" class="hidden">
+  <div class="top">
+    <div class="logo"><span>Hit-Zeitreise</span></div>
+    <nav class="tabs">
+      <button data-tab="songs" class="on">Songs</button>
+      <button data-tab="print">Karten drucken</button>
+      <button data-tab="settings">Einstellungen</button>
+    </nav>
+    <div class="spacer"></div>
+    <button class="btn primary" id="go-play">▶ Spielmodus</button>
+  </div>
+
+  <div class="warnbox hidden" id="file-warn">Du hast die Datei direkt geöffnet. So funktionieren <b>YouTube-Vorschau</b> und <b>Playlist-Import</b> nicht (YouTube-Fehler 153). Schließe dieses Fenster und starte die App per Doppelklick auf <b>„Zeitreise starten.cmd“</b> im selben Ordner. Deine bisherigen Songs vorher über Einstellungen → „Sicherung herunterladen“ sichern und dort wieder laden.</div>
+  <div id="tab-songs" class="tab">
+    <div class="panel">
+      <div class="toolbar">
+        <button class="btn" id="b-add">+ Song</button>
+        <button class="btn" id="b-bulk">Liste einfügen</button>
+        <button class="btn" id="b-pl">YouTube-Music-Playlist importieren</button>
+        <button class="btn" id="b-fillall" title="Fehlende Jahre, Deezer-IDs und YouTube-Links für alle Songs suchen">✨ Alles ergänzen</button>
+        <input class="search" id="q" placeholder="Suchen …">
+        <span class="count" id="count"></span>
+      </div>
+      <div class="progress" id="progress"></div>
+      <div id="empty" class="empty hidden">
+        <h2>Noch keine Songs</h2>
+        <ol>
+          <li>Songs hinzufügen – einzeln, als Liste oder aus einer YouTube-Music-Playlist.</li>
+          <li>Mit ✨ Jahr und Quellen automatisch ergänzen, Jahreszahlen kurz prüfen.</li>
+          <li>Unter <b>Karten drucken</b> doppelseitig drucken, ausschneiden, losspielen.</li>
+        </ol><br>
+        <button class="btn primary" id="b-add2">Ersten Song hinzufügen</button>
+      </div>
+      <div class="tablewrap" id="tablewrap">
+        <table>
+          <thead><tr><th>#</th><th>Interpret</th><th>Titel</th><th>Jahr</th><th>YouTube / YT Music</th><th>Deezer-ID</th><th title="Startpunkt in Sekunden oder m:ss – leer = zufällig">Start</th><th></th></tr></thead>
+          <tbody id="tb"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-print" class="tab hidden">
+    <div class="panel">
+      <div id="print-warn"></div>
+      <div class="row" style="margin-bottom:10px">
+        <span>Songs von</span><input type="number" id="pr-from" min="1" style="width:80px">
+        <span>bis</span><input type="number" id="pr-to" min="1" style="width:80px">
+        <label class="row"><input type="checkbox" id="pr-mirror"> Rückseiten für Duplexdruck spiegeln</label>
+        <div class="spacer"></div>
+        <button class="btn primary" id="b-print">Drucken</button>
+      </div>
+      <div class="row" style="margin-bottom:10px">
+        <span>QR-Code öffnet:</span>
+        <span class="seg" id="pr-mode">
+          <button data-mode="yt">YouTube direkt (kein Hosting)</button>
+          <button data-mode="app">Meinen Spielmodus (Titel verborgen)</button>
+        </span>
+      </div>
+      <p class="hint" id="pr-info"></p>
+      <p class="hint">Druckeinstellungen: <b>A4, Skalierung 100 % / „Tatsächliche Größe“</b>, <b>Hintergrundgrafiken an</b>, <b>beidseitig – an langer Kante spiegeln</b>. Kein Duplexdrucker? Erst alle Vorderseiten drucken, Stapel wenden und die Rückseiten drucken. Am besten auf dickeres Papier (160–250 g/m²).</p>
+      <div class="preview"><div class="sheets" id="pr-sheets"></div></div>
+    </div>
+  </div>
+
+  <div id="tab-settings" class="tab hidden">
+    <div class="grid2">
+      <div class="panel">
+        <h3>Online-Adresse dieser Seite</h3>
+        <p class="hint">Diese Adresse steckt in jedem QR-Code. Scannt man die Karte mit der normalen Handy-Kamera, öffnet sich hier der Spielmodus. Trage die Adresse ein, unter der du die Seite hostest (z. B. GitHub Pages) – <b>bevor</b> du druckst.</p>
+        <input id="c-base" placeholder="https://deinname.github.io/zeitreise/">
+        <p class="hint" id="c-base-info"></p>
+      </div>
+      <div class="panel">
+        <h3>YouTube-API-Schlüssel (optional)</h3>
+        <p class="hint">Nur nötig, um YouTube-Links automatisch zu finden und Playlists zu importieren. Kostenlos: <a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com" target="_blank" rel="noopener">Google Cloud Console</a> → Projekt anlegen → „YouTube Data API v3“ aktivieren → Anmeldedaten → API-Schlüssel. Reicht für ca. 100 Suchen pro Tag. Der Schlüssel bleibt nur in diesem Browser.</p>
+        <input id="c-key" placeholder="AIza…" autocomplete="off">
+      </div>
+      <div class="panel">
+        <h3>Tablet einrichten (einmalig)</h3>
+        <p class="hint">1. Diesen Code mit der Kamera des Tablets scannen und in <b>Chrome</b> öffnen.<br>
+        2. Chrome-Menü ⋮ → <b>„Zum Startbildschirm hinzufügen“</b> bzw. „App installieren“.<br>
+        3. Einmal „Spiel starten“ tippen und den Kamerazugriff <b>erlauben</b>.<br>
+        4. Für Werbefreiheit mit Premium: in Chrome auf dem Tablet einmal bei youtube.com anmelden.<br>
+        Danach startet das Spiel immer über das Symbol auf dem Startbildschirm. Die Song-Verwaltung bleibt hier am PC.</p>
+        <div id="c-qr"></div>
+        <p class="hint" id="c-qr-url" style="word-break:break-all"></p>
+      </div>
+      <div class="panel">
+        <h3>Daten</h3>
+        <p class="hint">Deine Songliste wird nur in diesem Browser gespeichert. Mach ab und zu eine Sicherung.</p>
+        <div class="row">
+          <button class="btn" id="b-export">Sicherung herunterladen (.json)</button>
+          <button class="btn" id="b-import">Sicherung laden</button>
+          <input type="file" id="f-import" accept=".json,application/json" class="hidden">
+          <button class="btn" id="b-clear">Alle Songs löschen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pv hidden" id="pv">
+    <button class="btn icon" id="pv-toggle"></button>
+    <button class="btn small" id="pv-back">−10 s</button>
+    <button class="btn small" id="pv-fwd">+10 s</button>
+    <span id="pv-time">0:00</span>
+    <div class="pv-t"><b id="pv-title"></b><small id="pv-src"></small></div>
+    <button class="btn small hidden" id="pv-swap">Quelle wechseln</button>
+    <button class="btn small" id="pv-setstart" title="Aktuelle Position als Startpunkt der Karte speichern">Start = jetzt</button>
+    <button class="btn icon" id="pv-close" title="Schließen">✕</button>
+  </div>
+</section>
+
+<!-- ===================== SPIELMODUS ===================== -->
+<section id="play" class="hidden">
+  <div class="pstart" id="p-start">
+    <div class="logo"><span>Hit-Zeitreise</span></div>
+    <button class="btn primary huge" id="p-go">▶ Spiel starten</button>
+    <p id="p-start-hint">Danach einfach eine Karte vor die Kamera halten –<br>die Musik startet von selbst.</p>
+  </div>
+  <div class="pgame hidden" id="p-game">
+    <div class="camwrap" id="p-cam">
+      <video id="sc-video" playsinline muted autoplay></video>
+      <div class="frame"></div>
+      <div class="camhint">Karte hier vorhalten</div>
+      <div class="camerr hidden" id="p-camerr"></div>
+    </div>
+    <div class="pinfo">
+      <div class="eq" id="p-eq"><i></i><i></i><i></i><i></i><i></i></div>
+      <p id="p-status">Halte eine Karte vor die Kamera</p>
+      <div class="pbar"><div id="p-bar"></div></div>
+      <div class="pbtns">
+        <button class="bigbtn" id="p-toggle" disabled>Pause</button>
+        <button class="bigbtn" id="p-restart" disabled>↺ Nochmal</button>
+      </div>
+    </div>
+  </div>
+  <button class="gear" id="p-gear" title="Einstellungen: gedrückt halten" aria-label="Einstellungen (gedrückt halten)">⚙</button>
+  <div class="sheetbox hidden" id="p-cfg">
+    <h3>Einstellungen</h3>
+    <label>Musik von <span class="seg" id="p-src"><button data-src="yt">YouTube</button><button data-src="dz">Deezer (30 s)</button></span></label>
+    <label>Kamera <span class="seg" id="p-camsel"><button data-cam="user">vorne (Tablet)</button><button data-cam="environment">hinten</button></span></label>
+    <label><input type="checkbox" id="pc-rnd"> Zufälliger Startpunkt, wenn auf der Karte keiner gespeichert ist</label>
+    <label>zwischen <input type="number" id="pc-min" min="0"> und <input type="number" id="pc-max" min="0"> Sekunden</label>
+    <label>Automatisch stoppen nach <input type="number" id="pc-stop" min="0"> Sekunden (0 = nie)</label>
+    <p class="hint">Deezer-Hörproben sind immer 30 s lang und meist schon ein Ausschnitt aus der Songmitte. Wenn ein YouTube-Video gesperrt ist, wird automatisch Deezer genommen.</p>
+    <div class="row"><button class="btn primary" id="pc-close">Fertig</button><button class="btn" id="p-back">Zur Song-Verwaltung</button></div>
+  </div>
+</section>
+
+<div class="tapveil"><div class="ring"></div><p style="font-size:22px">Bitte einmal in den<br>leuchtenden Kreis tippen.<br><span class="hint">Das ist nur beim ersten Lied nötig.</span></p></div>
+<div id="ytwrap"><div id="yt-player"></div></div>
+<div id="toast"></div>
+<div id="print-out"></div>
+
+<dialog id="dlg-bulk">
+  <form method="dialog">
+    <h2>Songliste einfügen</h2>
+    <p class="hint">Eine Zeile pro Song: <code>Interpret - Titel</code>, optional mit Jahr: <code>Queen - Bohemian Rhapsody (1975)</code>. Deezer-ID, Jahr und – mit API-Schlüssel – der YouTube-Link werden danach automatisch gesucht.</p>
+    <textarea id="bulk-text" rows="10" placeholder="Nena - 99 Luftballons&#10;a-ha - Take On Me&#10;Dua Lipa - Levitating"></textarea>
+    <div class="dlg-actions"><button class="btn" value="cancel">Abbrechen</button><button class="btn primary" value="ok">Hinzufügen &amp; ergänzen</button></div>
+  </form>
+</dialog>
+
+<dialog id="dlg-pl">
+  <form method="dialog">
+    <h2>YouTube-Music-Playlist importieren</h2>
+    <p class="hint">Link einer <b>öffentlichen oder nicht gelisteten</b> Playlist einfügen (YouTube oder YouTube Music). „Mein Mix“ und „Lieblingssongs“ sind privat und funktionieren nicht – kopiere die Songs vorher in eine eigene Playlist. Benötigt den YouTube-API-Schlüssel aus den Einstellungen.</p>
+    <input id="pl-url" placeholder="https://music.youtube.com/playlist?list=PL…">
+    <div class="dlg-actions"><button class="btn" value="cancel">Abbrechen</button><button class="btn primary" value="ok">Importieren</button></div>
+  </form>
+</dialog>
+
+<script>
+'use strict';
+/* ---------- Hilfsfunktionen ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const uid = () => Math.random().toString(36).slice(2, 10);
+const fmtTime = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+function parseTime(v) {
+  v = String(v ?? '').trim();
+  let m = v.match(/^(\d+):(\d{1,2})$/); if (m) return +m[1] * 60 + +m[2];
+  if (/^\d+$/.test(v)) return +v;
+  return '';
+}
+const ICON = {
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="5" height="16" rx="1.5"/><rect x="14" y="4" width="5" height="16" rx="1.5"/></svg>',
+  cam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="4" height="4"/><rect x="13" y="13" width="4" height="4"/><path d="M13 7h4v2M7 15v2h2"/></svg>',
+  spark: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.5 9l-5.7 1.6L12 16l-1.8-5.4L4.5 9l5.7-1.4zM19 14l.9 2.6 2.6.9-2.6.9L19 21l-.9-2.6-2.6-.9 2.6-.9z"/></svg>',
+  ext: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+};
+let toastT;
+function toast(msg, ms = 3800) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), ms); }
+
+/* ---------- Daten ---------- */
+const DEF_CFG = { baseUrl: '', ytKey: '', source: 'yt', randomStart: true, rndMin: 30, rndMax: 60, stopAfter: 0, mirror: true, cam: 'user' };
+let cfg = Object.assign({}, DEF_CFG, LS.get('hs.cfg', {}));
+let songs = LS.get('hs.songs', []);
+const saveCfg = () => LS.set('hs.cfg', cfg);
+const saveSongs = () => LS.set('hs.songs', songs);
+const byId = id => songs.find(s => s.id === id);
+const newSong = (o = {}) => Object.assign({ id: uid(), artist: '', title: '', year: '', yt: '', dz: '', start: '', yearAuto: false }, o);
+const isReady = s => s.artist && s.title && /^\d{4}$/.test(String(s.year)) && (s.yt || s.dz);
+
+function parseYT(s) {
+  s = (s || '').trim(); if (!s) return '';
+  if (/^[\w-]{11}$/.test(s)) return s;
+  try {
+    const u = new URL(s);
+    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1, 12);
+    const v = u.searchParams.get('v'); if (v) return v.slice(0, 11);
+    const m = u.pathname.match(/\/(embed|shorts|live)\/([\w-]{11})/); if (m) return m[2];
+  } catch (e) {}
+  return '';
+}
+function parseDZ(s) {
+  s = (s || '').trim(); if (/^\d+$/.test(s)) return s;
+  const m = s.match(/track\/(\d+)/); return m ? m[1] : '';
+}
+
+/* QR-Inhalt: <Basis-URL>#y=<YouTube-ID>&d=<Deezer-ID>&s=<Start> – ohne Titel, damit nichts verraten wird */
+const defaultBase = () => /^https?:$/.test(location.protocol) ? location.origin + location.pathname : '';
+const baseUrl = () => (cfg.baseUrl || defaultBase()).replace(/#.*$/, '');
+function payloadStr(s) {
+  const p = new URLSearchParams();
+  if (s.yt) p.set('y', s.yt); if (s.dz) p.set('d', s.dz);
+  if (s.start !== '' && s.start != null) p.set('s', s.start);
+  return p.toString();
+}
+/* Zweite Variante ohne Hosting: QR öffnet direkt YouTube (jede Kamera-App kann das, aber der Titel ist sichtbar).
+   Ohne gespeicherten Startpunkt wird pro Song eine feste „zufällige“ Stelle eingebacken, damit nicht der Anfang läuft. */
+const isLocalUrl = u => !u || /\/\/(localhost|127\.|192\.168\.|10\.)/.test(u);
+const qrMode = () => cfg.qrMode || (isLocalUrl(baseUrl()) ? 'yt' : 'app'); // lokal gestartet → Direktlinks
+function bakedStart(s) {
+  if (s.start !== '' && s.start != null) return +s.start;
+  let h = 0; for (const ch of s.yt || s.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; // aus der Video-ID: bleibt auch nach Export/Import gleich
+  return cfg.rndMin + h % (Math.max(0, cfg.rndMax - cfg.rndMin) + 1);
+}
+const cardUrl = s => qrMode() === 'yt'
+  ? `https://youtu.be/${s.yt}?t=${bakedStart(s)}`
+  : (baseUrl() || 'zeitreise:') + '#' + payloadStr(s);
+function parsePayload(str) {
+  if (!str) return null;
+  if (/^https?:\/\/(www\.|m\.|music\.)?(youtube\.com|youtu\.be)\//.test(str)) { // Direktlink-Karten gehen auch im Spielmodus
+    const y = parseYT(str); let t = null;
+    try { t = parseInt(new URL(str).searchParams.get('t')); } catch (e) {}
+    return y ? { y, d: null, s: Number.isFinite(t) ? t : null } : null;
+  }
+  const i = str.indexOf('#'); const q = new URLSearchParams(i >= 0 ? str.slice(i + 1) : str);
+  const y = q.get('y') || '', d = q.get('d') || '', s = q.get('s');
+  const p = { y: /^[\w-]{11}$/.test(y) ? y : null, d: /^\d+$/.test(d) ? d : null, s: s != null && /^\d+$/.test(s) ? +s : null };
+  return p.y || p.d ? p : null;
+}
+
+/* ---------- Online-Dienste ---------- */
+let jsonpN = 0;
+function jsonp(url) { // Deezer erlaubt kein CORS, aber JSONP
+  return new Promise((res, rej) => {
+    const cb = '__dz' + (++jsonpN);
+    const sc = document.createElement('script');
+    const done = () => { clearTimeout(t); window[cb] = () => {}; sc.remove(); };
+    const t = setTimeout(() => { done(); rej(new Error('Deezer antwortet nicht.')); }, 10000);
+    window[cb] = d => { done(); d && d.error ? rej(new Error('Deezer: ' + (d.error.message || 'Fehler'))) : res(d); };
+    sc.onerror = () => { done(); rej(new Error('Deezer nicht erreichbar.')); };
+    sc.src = url + (url.includes('?') ? '&' : '?') + 'output=jsonp&callback=' + cb;
+    document.head.appendChild(sc);
+  });
+}
+const dz = {
+  search: q => jsonp('https://api.deezer.com/search?limit=25&q=' + encodeURIComponent(q)),
+  track: id => jsonp('https://api.deezer.com/track/' + id)
+};
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, 'and').replace(/[^a-z0-9]/g, '');
+const VARIANT = /\b(live|acoustic|unplugged|remix|remixes|mix|mixes|version|karaoke|instrumental|symphonic|orchestral|cover|covers|demo|re-?recorded|sped up|slowed|tribute|lullaby|renditions|performs|originally|medley)\b/i;
+async function dzFind(artist, title) { // Original statt Live-/Akustik-/Remix-/Cover-Fassung bevorzugen
+  const res = await Promise.all([ // Deezers Suche ist launisch – drei Varianten zusammenwerfen
+    `artist:"${artist}" track:"${title}"`, `${artist} ${title}`, `track:"${title}"`
+  ].map(q => dz.search(q).catch(() => ({}))));
+  const nt = norm(title), na = norm(artist), wantVariant = VARIANT.test(title);
+  let best = null, bestScore = -Infinity;
+  for (const t of res.flatMap(r => r.data || [])) {
+    const ts = norm(t.title_short), an = norm(t.artist && t.artist.name);
+    let sc = (t.rank || 0) / 1e4;
+    if (ts === nt) sc += 1000; else if (ts.includes(nt) || nt.includes(ts)) sc += 400;
+    if (an === na) sc += 500; else if (an.includes(na) || na.includes(an)) sc += 250; else sc -= 600;
+    if (!t.title_version) sc += 200;
+    if (!wantVariant && (VARIANT.test(t.title) || VARIANT.test(t.album && t.album.title))) sc -= 800;
+    if (sc > bestScore) { best = t; bestScore = sc; }
+  }
+  return bestScore > 600 ? best : null;
+}
+
+const luc = s => String(s).replace(/["\\]/g, ' ').trim();
+let mbLast = 0;
+async function mb(type, q, limit) { // MusicBrainz erlaubt max. 1 Anfrage pro Sekunde
+  const wait = mbLast + 1100 - Date.now(); if (wait > 0) await sleep(wait); mbLast = Date.now();
+  const r = await fetch(`https://musicbrainz.org/ws/2/${type}?fmt=json&limit=${limit}&query=` + encodeURIComponent(q));
+  if (!r.ok) throw new Error('MusicBrainz ' + r.status);
+  return r.json();
+}
+const earliest = list => list.filter(x => (x.score || 0) >= 90).map(x => parseInt((x['first-release-date'] || '').slice(0, 4))).filter(y => y > 1900).reduce((a, y) => a && a < y ? a : y, null);
+async function mbYear(artist, title) {
+  const a = luc(artist), t = luc(title);
+  // 1. Wann kam die Single raus? (trifft bei Hits fast immer das „richtige“ Jahr)
+  const singles = await mb('release-group', `releasegroup:"${t}" AND artist:"${a}" AND primarytype:single`, 50);
+  const y = earliest(singles['release-groups'] || []);
+  if (y) return y;
+  // 2. Sonst: früheste Studioaufnahme (ohne Live-Mitschnitte und Compilations)
+  const recs = await mb('recording', `recording:"${t}" AND artist:"${a}" AND NOT comment:live AND NOT secondarytype:(live OR compilation)`, 100);
+  return earliest(recs.recordings || []);
+}
+
+async function ytApi(path, params) {
+  if (!cfg.ytKey) throw new Error('Kein YouTube-API-Schlüssel hinterlegt (Einstellungen).');
+  const u = new URL('https://www.googleapis.com/youtube/v3/' + path);
+  Object.entries(Object.assign({ key: cfg.ytKey }, params)).forEach(([k, v]) => u.searchParams.set(k, v));
+  let j;
+  try { j = await (await fetch(u)).json(); }
+  catch (e) { throw new Error('Keine Verbindung zur YouTube-API.' + (location.protocol === 'file:' ? ' Bitte die App über „Zeitreise starten.cmd“ öffnen.' : '')); }
+  if (j.error) {
+    console.warn('YouTube-API', j.error);
+    const reason = (j.error.errors && j.error.errors[0] && j.error.errors[0].reason) || '';
+    const st = JSON.stringify(j.error);
+    if (reason === 'playlistNotFound') throw new Error('Playlist nicht gefunden. Ist sie privat? In YouTube Music: Playlist bearbeiten → Datenschutz „Nicht gelistet“ oder „Öffentlich“.');
+    if (/API_KEY_INVALID|keyInvalid/.test(st)) throw new Error('Der YouTube-API-Schlüssel ist ungültig (Einstellungen prüfen).');
+    if (/REFERRER|referer/i.test(st)) throw new Error('Der API-Schlüssel ist auf bestimmte Websites beschränkt. In der Google Cloud Console bei „Websiteeinschränkungen“ http://localhost:8765/* erlauben oder die Einschränkung entfernen.');
+    if (/SERVICE_DISABLED|accessNotConfigured/.test(st)) throw new Error('Die „YouTube Data API v3“ ist in deinem Google-Projekt noch nicht aktiviert.');
+    if (/quota/i.test(st)) throw new Error('Das tägliche YouTube-API-Kontingent ist aufgebraucht – morgen geht es wieder.');
+    throw new Error('YouTube: ' + (j.error.message || 'Fehler'));
+  }
+  return j;
+}
+async function ytSearch(q) {
+  const j = await ytApi('search', { part: 'snippet', type: 'video', videoEmbeddable: 'true', videoCategoryId: '10', maxResults: '5', q });
+  return (j.items && j.items[0] && j.items[0].id.videoId) || '';
+}
+async function ytPlaylist(id) {
+  const out = []; let page = '';
+  do {
+    const p = { part: 'snippet', maxResults: '50', playlistId: id }; if (page) p.pageToken = page;
+    const j = await ytApi('playlistItems', p);
+    for (const it of j.items || []) {
+      const sn = it.snippet; if (!sn || !sn.resourceId || /^(Deleted|Private) video$/.test(sn.title)) continue;
+      out.push({ yt: sn.resourceId.videoId, raw: sn.title, channel: sn.videoOwnerChannelTitle || '' });
+    }
+    page = j.nextPageToken || '';
+  } while (page);
+  return out;
+}
+function cleanYT(raw, channel) {
+  let t = raw.replace(/\s*[(\[][^)\]]*(official|video|audio|lyric|remaster|visuali[sz]er|clip|hd|4k|mv)[^)\]]*[)\]]/ig, '').trim();
+  let artist = channel.replace(/\s*-\s*Topic$/i, '').replace(/VEVO$/i, '').trim();
+  const m = t.match(/^(.+?)\s+[-–—]\s+(.+)$/);
+  if (m) { artist = m[1].trim(); t = m[2].trim(); }
+  return { artist, title: t };
+}
+
+/* Fehlende Infos zu einem Song suchen. names=true: Interpret/Titel durch Deezer-Schreibweise ersetzen */
+async function autofill(s, { names = false } = {}) {
+  const errs = [];
+  if (!s.artist || !s.title) return ['Interpret/Titel fehlt'];
+  if (!s.dz || names) {
+    try {
+      const t = await dzFind(s.artist, s.title);
+      if (t) { if (!s.dz) s.dz = String(t.id); if (names) { s.artist = t.artist.name; s.title = t.title_short || t.title; } }
+    } catch (e) { errs.push('Deezer'); }
+  }
+  if (!s.year) {
+    try { const y = await mbYear(s.artist, s.title); if (y) { s.year = y; s.yearAuto = true; } } catch (e) { errs.push('MusicBrainz'); }
+    if (!s.year && s.dz) {
+      try { const t = await dz.track(s.dz); const y = parseInt((t.release_date || '').slice(0, 4)); if (y > 1900) { s.year = y; s.yearAuto = true; } } catch (e) {}
+    }
+  }
+  if (!s.yt && cfg.ytKey) {
+    try { s.yt = await ytSearch(`${s.artist} ${s.title}`); } catch (e) { errs.push(e.message); }
+  }
+  return errs;
+}
+
+/* ---------- Wiedergabe (YouTube-IFrame oder Deezer-Hörprobe) ---------- */
+const NOOP = { state() {}, tick() {}, error() {}, needTap() {} };
+const Engine = {
+  yt: null, ytP: null, audio: new Audio(), mode: null, cur: null, startAt: 0, state: 'idle', limit: false, dzInfo: null, h: NOOP,
+  on(h) { this.h = Object.assign({}, NOOP, h); },
+  // first: {videoId, start} – der Player wird gleich mit dem ersten Lied erzeugt.
+  // Ein leerer Player meldet sonst verzögert „Fehler 2“, der sich mit dem ersten Lied überschneiden kann.
+  ensureYT(first) {
+    if (this.ytP) return this.ytP;
+    this.ytP = new Promise((res, rej) => {
+      const make = () => {
+        const pv = { playsinline: 1, controls: 0, disablekb: 1, rel: 0, fs: 0, iv_load_policy: 3 };
+        if (/^https?:$/.test(location.protocol)) pv.origin = location.origin;
+        if (first) pv.start = first.start;
+        this.yt = new YT.Player('yt-player', {
+          width: 320, height: 180, playerVars: pv, videoId: first ? first.videoId : undefined,
+          events: { onReady: () => res(this.yt), onStateChange: e => this._ytState(e), onError: e => this._ytErr(e) }
+        });
+      };
+      if (window.YT && YT.Player) return make();
+      window.onYouTubeIframeAPIReady = make;
+      const sc = document.createElement('script'); sc.src = 'https://www.youtube.com/iframe_api';
+      sc.onerror = () => { this.ytP = null; rej(new Error('YouTube nicht erreichbar.')); };
+      document.head.appendChild(sc);
+    });
+    return this.ytP;
+  },
+  async load(p, opts = {}) {
+    this.stop();
+    this.cur = p; this.dzInfo = null; this.limitDone = false;
+    const pref = opts.src || cfg.source;
+    const src = pref === 'dz' && p.d ? 'dz' : p.y ? 'yt' : p.d ? 'dz' : null;
+    if (!src) throw new Error('Diese Karte enthält keine abspielbare Quelle.');
+    this.mode = src;
+    if (src === 'yt') {
+      let s = p.s;
+      if (!Number.isFinite(s)) s = !opts.noRandom && cfg.randomStart ? Math.round(cfg.rndMin + Math.random() * Math.max(0, cfg.rndMax - cfg.rndMin)) : 0;
+      this.startAt = s;
+      const fresh = !this.ytP;
+      await this.ensureYT({ videoId: p.y, start: s });
+      this.cued = true;
+      if (!fresh) this.yt.cueVideoById({ videoId: p.y, startSeconds: s });
+    } else {
+      const t = await dz.track(p.d);
+      if (!t.preview) throw new Error('Für diesen Song gibt es bei Deezer keine Hörprobe.');
+      this.dzInfo = t; this.startAt = 0;
+      this.audio.src = t.preview; this.audio.load();
+    }
+    this.setState('ready');
+    return src;
+  },
+  play() {
+    this.timeUp = false;
+    if (this.mode === 'yt') {
+      this.yt.playVideo();
+      // Manche Browser blockieren den ersten Start: einmal nachfassen, sonst um einen Tipp direkt in den Player bitten
+      const ok = () => [1, 3].includes(this.yt.getPlayerState());
+      clearTimeout(this.tapT);
+      this.tapT = setTimeout(() => {
+        if (this.mode !== 'yt' || ok()) return;
+        this.yt.playVideo();
+        this.tapT = setTimeout(() => { if (this.mode === 'yt' && !ok()) this.h.needTap(true); }, 1500);
+      }, 1200);
+    } else if (this.mode === 'dz') {
+      this.audio.play().catch(() => this.h.error('Wiedergabe blockiert – bitte auf „Weiter“ tippen.'));
+    }
+  },
+  pause() { clearTimeout(this.tapT); if (this.mode === 'yt') this.yt.pauseVideo(); else if (this.mode === 'dz') this.audio.pause(); },
+  toggle() { this.state === 'playing' ? this.pause() : this.play(); },
+  restart() { this.limitDone = false; this.grace = Date.now() + 1500; this.seek(this.startAt); if (this.state !== 'playing') this.play(); },
+  seek(t) { t = Math.max(0, t); if (this.mode === 'yt') this.yt.seekTo(t, true); else if (this.mode === 'dz') this.audio.currentTime = t; },
+  time() { if (this.mode === 'yt') return (this.yt && this.yt.getCurrentTime && this.yt.getCurrentTime()) || 0; if (this.mode === 'dz') return this.audio.currentTime || 0; return 0; },
+  stop() {
+    clearTimeout(this.tapT); this.h.needTap(false);
+    try { this.yt && this.yt.stopVideo(); } catch (e) {}
+    this.audio.pause(); this.audio.removeAttribute('src');
+    this.mode = null; this.setState('idle');
+  },
+  setState(s) {
+    this.state = s; this.h.state(s);
+    clearInterval(this.tick);
+    if (s === 'playing') this.tick = setInterval(() => {
+      const t = this.time(), el = t - this.startAt;
+      this.h.tick(t, el);
+      // Zeitlimit greift einmal pro Lied – danach darf man mit „Weiter“ weiterhören
+      if (this.limit && !this.limitDone && !(this.grace > Date.now()) && cfg.stopAfter > 0 && el >= cfg.stopAfter) { this.timeUp = this.limitDone = true; this.pause(); }
+    }, 250);
+  },
+  _ytState(e) {
+    if (this.mode !== 'yt') return;
+    const s = e.data;
+    if (s === 1) { clearTimeout(this.tapT); this.h.needTap(false); this.setState('playing'); }
+    else if (s === 2) this.setState('paused');
+    else if (s === 0) this.setState('ended');
+  },
+  _ytErr(e) {
+    if (this.mode !== 'yt' || !this.cued) return; // der anfangs leere Player meldet Fehler 2 – ignorieren
+    const c = e.data;
+    const msg = c === 101 || c === 150 ? 'Dieses YouTube-Video darf nicht eingebettet werden.'
+      : c === 100 ? 'YouTube-Video nicht gefunden.'
+      : c === 153 ? 'YouTube spielt nur, wenn die App über „Zeitreise starten.cmd“ geöffnet ist (Fehler 153).'
+      : 'YouTube-Fehler ' + c + '.';
+    if (this.cur && this.cur.d) {
+      this.load(this.cur, { src: 'dz' }).then(() => this.h.error(msg + ' Deezer-Hörprobe ist bereit – tippe ▶.')).catch(err => this.h.error(err.message));
+    } else { this.stop(); this.h.error(msg); }
+  }
+};
+Engine.audio.preload = 'auto';
+Engine.audio.addEventListener('playing', () => Engine.mode === 'dz' && Engine.setState('playing'));
+Engine.audio.addEventListener('pause', () => Engine.mode === 'dz' && !Engine.audio.ended && Engine.setState('paused'));
+Engine.audio.addEventListener('ended', () => Engine.mode === 'dz' && Engine.setState('ended'));
+
+/* ---------- Editor: Songtabelle ---------- */
+function rowHtml(s, i) {
+  return `<tr data-id="${s.id}" class="${isReady(s) ? 'ok' : 'warn'}">
+<td class="n">${i + 1}</td>
+<td><input data-f="artist" value="${esc(s.artist)}" placeholder="Interpret"></td>
+<td><input data-f="title" value="${esc(s.title)}" placeholder="Titel"></td>
+<td class="yr"><input data-f="year" value="${esc(s.year)}" placeholder="Jahr" inputmode="numeric" class="${s.yearAuto ? 'auto' : ''}" title="${s.yearAuto ? 'Automatisch gefunden – bitte prüfen' : ''}"></td>
+<td class="yt"><div class="wrap"><input data-f="yt" value="${esc(s.yt)}" placeholder="Link einfügen"><button class="btn icon b-yts" data-a="yts" title="In YouTube Music suchen">${ICON.ext}</button></div></td>
+<td class="dz"><input data-f="dz" value="${esc(s.dz)}" placeholder="ID"></td>
+<td class="st"><input data-f="start" value="${s.start === '' ? '' : fmtTime(s.start)}" placeholder="zufällig"></td>
+<td class="acts"><button class="btn icon" data-a="play" title="Anhören">${ICON.play}</button> <button class="btn icon b-auto" data-a="auto" title="Jahr, Deezer-ID und YouTube-Link suchen">${ICON.spark}</button> <button class="btn icon" data-a="del" title="Löschen">✕</button></td>
+</tr>`;
+}
+function renderSongs() {
+  const f = $('#q').value.trim().toLowerCase();
+  $('#tb').innerHTML = songs.map((s, i) => [s, i]).filter(([s]) => !f || `${s.artist} ${s.title} ${s.year}`.toLowerCase().includes(f)).map(([s, i]) => rowHtml(s, i)).join('');
+  $('#empty').classList.toggle('hidden', songs.length > 0);
+  $('#tablewrap').classList.toggle('hidden', songs.length === 0);
+  updateCount();
+}
+function updateRow(s) {
+  const tr = $(`#tb tr[data-id="${s.id}"]`); if (!tr) return;
+  const busy = tr.classList.contains('busy');
+  tr.outerHTML = rowHtml(s, songs.indexOf(s));
+  if (busy) $(`#tb tr[data-id="${s.id}"]`).classList.add('busy');
+}
+function updateCount() { const r = songs.filter(isReady).length; $('#count').textContent = `${songs.length} Songs · ${r} druckbereit`; }
+
+$('#tb').addEventListener('input', e => {
+  const inp = e.target, f = inp.dataset.f; if (!f) return;
+  const tr = inp.closest('tr'), s = byId(tr.dataset.id); const v = inp.value.trim();
+  if (f === 'year') { s.year = /^\d{4}$/.test(v) ? +v : v; s.yearAuto = false; inp.classList.remove('auto'); }
+  else if (f === 'start') s.start = parseTime(v);
+  else if (f === 'yt' || f === 'dz') s[f] = v;
+  else s[f] = inp.value;
+  saveSongs(); tr.className = isReady(s) ? 'ok' : 'warn'; updateCount();
+});
+$('#tb').addEventListener('change', e => {
+  const inp = e.target, f = inp.dataset.f; if (!f) return;
+  const s = byId(inp.closest('tr').dataset.id);
+  if (f === 'yt') { const id = parseYT(inp.value); if (inp.value.trim() && !id) toast('Das sieht nicht nach einem YouTube-Link aus.'); s.yt = id; inp.value = id; }
+  if (f === 'dz') { const id = parseDZ(inp.value); if (inp.value.trim() && !id) toast('Bitte die Deezer-Track-ID oder einen deezer.com/track/…-Link einfügen.'); s.dz = id; inp.value = id; }
+  if (f === 'start') inp.value = s.start === '' ? '' : fmtTime(s.start);
+  saveSongs(); updateRow(s); updateCount();
+});
+$('#tb').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-a]'); if (!b) return;
+  const tr = b.closest('tr'), s = byId(tr.dataset.id);
+  if (b.dataset.a === 'del') { songs.splice(songs.indexOf(s), 1); saveSongs(); renderSongs(); }
+  if (b.dataset.a === 'yts') window.open('https://music.youtube.com/search?q=' + encodeURIComponent(`${s.artist} ${s.title}`), '_blank', 'noopener');
+  if (b.dataset.a === 'play') { if (!s.yt && !s.dz) return toast('Erst einen YouTube-Link oder eine Deezer-ID eintragen.'); PV.open(s); }
+  if (b.dataset.a === 'auto') runAutofill([s]);
+});
+$('#q').addEventListener('input', renderSongs);
+
+function addSong() {
+  const s = newSong(); songs.push(s); saveSongs(); $('#q').value = ''; renderSongs();
+  const inp = $(`#tb tr[data-id="${s.id}"] input`); inp && inp.focus();
+}
+$('#b-add').onclick = addSong; $('#b-add2').onclick = addSong;
+
+let busy = false;
+async function runAutofill(list, opts) {
+  if (busy) return toast('Es läuft schon eine Suche.');
+  busy = true; let problems = 0;
+  for (let k = 0; k < list.length; k++) {
+    const s = list[k];
+    $('#progress').textContent = `Suche ${k + 1}/${list.length}: ${s.artist} – ${s.title}`;
+    const tr = $(`#tb tr[data-id="${s.id}"]`); tr && tr.classList.add('busy');
+    const errs = await autofill(s, opts); if (errs.length) { problems++; console.warn(s.artist, s.title, errs); }
+    saveSongs();
+    const tr2 = $(`#tb tr[data-id="${s.id}"]`); tr2 && tr2.classList.remove('busy');
+    updateRow(s); updateCount();
+  }
+  $('#progress').textContent = ''; busy = false;
+  toast(problems ? `Fertig – bei ${problems} Song(s) gab es Probleme. Gelbe Jahreszahlen bitte prüfen.` : 'Fertig! Gelbe Jahreszahlen wurden automatisch gefunden – bitte kurz prüfen.', 6000);
+}
+$('#b-fillall').onclick = () => {
+  const list = songs.filter(s => s.artist && s.title && (!s.year || !s.dz || (!s.yt && cfg.ytKey)));
+  if (!list.length) return toast('Nichts zu ergänzen.');
+  runAutofill(list);
+};
+
+$('#b-bulk').onclick = () => { $('#bulk-text').value = ''; $('#dlg-bulk').showModal(); };
+$('#dlg-bulk').addEventListener('close', () => {
+  if ($('#dlg-bulk').returnValue !== 'ok') return;
+  const added = [];
+  for (const line of $('#bulk-text').value.split('\n')) {
+    const m = line.trim().match(/^(.+?)\s+[-–—]\s+(.+?)(?:\s*\((\d{4})\))?$/);
+    if (!m) continue;
+    const s = newSong({ artist: m[1].trim(), title: m[2].trim(), year: m[3] ? +m[3] : '' });
+    songs.push(s); added.push(s);
+  }
+  if (!added.length) return toast('Keine Zeile im Format „Interpret - Titel“ gefunden.');
+  saveSongs(); renderSongs(); runAutofill(added);
+});
+
+$('#b-pl').onclick = () => {
+  if (!cfg.ytKey) { toast('Dafür brauchst du einen YouTube-API-Schlüssel (Einstellungen).', 5000); return showTab('settings'); }
+  $('#pl-url').value = ''; $('#dlg-pl').showModal();
+};
+$('#dlg-pl').addEventListener('close', async () => {
+  if ($('#dlg-pl').returnValue !== 'ok') return;
+  const v = $('#pl-url').value.trim(); let id = v;
+  try {
+    const u = new URL(v); // ?list=… oder YouTube-Music-Link der Form /browse/VL…
+    id = u.searchParams.get('list') || (u.pathname.match(/\/browse\/VL([\w-]+)/) || [])[1] || '';
+  } catch (e) {}
+  if (/^(LM|RD)/.test(id)) return toast('„Lieblingssongs“ und automatische Mixe kann YouTube nicht herausgeben. Kopiere die Songs in eine eigene Playlist (Sichtbarkeit „Nicht gelistet“).', 8000);
+  if (!/^[\w-]{10,}$/.test(id)) return toast('Keine Playlist-ID im Link gefunden.');
+  $('#progress').textContent = 'Lade Playlist …';
+  try {
+    const items = await ytPlaylist(id);
+    const known = new Set(songs.map(s => s.yt));
+    const added = [];
+    for (const it of items) {
+      if (known.has(it.yt)) continue;
+      const s = newSong(Object.assign({ yt: it.yt }, cleanYT(it.raw, it.channel)));
+      songs.push(s); added.push(s); known.add(it.yt);
+    }
+    saveSongs(); renderSongs();
+    toast(`${added.length} Songs importiert – suche jetzt Jahr & Deezer-ID …`);
+    if (added.length) runAutofill(added, { names: true }); else $('#progress').textContent = '';
+  } catch (e) { $('#progress').textContent = ''; toast(e.message, 6000); }
+});
+
+/* ---------- Editor: Vorschau-Leiste ---------- */
+const PV = {
+  s: null,
+  async open(s, src) {
+    PV.s = s; Engine.limit = false; Engine.on(PV.handlers);
+    $('#pv').classList.remove('hidden');
+    $('#pv-title').textContent = `${s.artist || '?'} – ${s.title || '?'}`; $('#pv-src').textContent = 'lädt …'; $('#pv-time').textContent = '0:00';
+    try {
+      await Engine.load({ y: s.yt || null, d: s.dz || null, s: s.start === '' ? 0 : +s.start }, { src: src || (s.yt ? 'yt' : 'dz'), noRandom: true });
+      $('#pv-swap').classList.toggle('hidden', !(s.yt && s.dz));
+      Engine.play();
+    } catch (e) { $('#pv-src').textContent = ''; toast(e.message); }
+  },
+  close() { Engine.stop(); document.body.classList.remove('pv-yt'); $('#pv').classList.add('hidden'); },
+  handlers: {
+    state(st) {
+      $('#pv-toggle').innerHTML = st === 'playing' ? ICON.pause : ICON.play;
+      if (st === 'ready') { // auch nach automatischem Wechsel YouTube → Deezer
+        document.body.classList.toggle('pv-yt', Engine.mode === 'yt');
+        $('#pv-src').textContent = Engine.mode === 'yt' ? 'YouTube – falls es nicht startet: einmal ins Video klicken' : 'Deezer-Hörprobe';
+        $('#pv-setstart').classList.toggle('hidden', Engine.mode !== 'yt');
+      }
+    },
+    tick(t) { $('#pv-time').textContent = fmtTime(t); },
+    error(m) { toast(m, 6000); }
+  }
+};
+$('#pv-toggle').innerHTML = ICON.play;
+$('#pv-toggle').onclick = () => Engine.mode && Engine.toggle();
+$('#pv-back').onclick = () => { Engine.seek(Engine.time() - 10); PV.handlers.tick(Engine.time() - 10); };
+$('#pv-fwd').onclick = () => { Engine.seek(Engine.time() + 10); PV.handlers.tick(Engine.time() + 10); };
+$('#pv-close').onclick = () => PV.close();
+$('#pv-swap').onclick = () => PV.s && PV.open(PV.s, Engine.mode === 'yt' ? 'dz' : 'yt');
+$('#pv-setstart').onclick = () => {
+  if (!PV.s || Engine.mode !== 'yt') return;
+  PV.s.start = Math.floor(Engine.time()); saveSongs(); updateRow(PV.s);
+  toast(`Startpunkt auf ${fmtTime(PV.s.start)} gesetzt.`);
+};
+
+/* ---------- Karten drucken ---------- */
+function qrSvg(text) {
+  const q = qrcode(0, 'M'); q.addData(text); q.make();
+  const n = q.getModuleCount(); let d = '';
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += `M${c} ${r}h1v1h-1z`;
+  return `<svg viewBox="-1 -1 ${n + 2} ${n + 2}" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><path d="${d}" fill="#000"/></svg>`;
+}
+const sz = (txt, a, b) => txt.length > b ? 'xs' : txt.length > a ? 'sm' : '';
+const frontCard = s => s ? `<div class="card fr"><div class="r r1"></div><div class="r r2"></div><div class="r r3"></div><div class="qr">${qrSvg(cardUrl(s))}</div></div>` : '<div class="card none"></div>';
+const backCard = (s, i) => s ? `<div class="card bk c${i % 6}"><div class="ar ${sz(s.artist, 26, 48)}">${esc(s.artist)}</div><div class="yr">${esc(s.year)}</div><div class="ti ${sz(s.title, 30, 60)}">${esc(s.title)}</div></div>` : '<div class="card none"></div>';
+
+function printList() {
+  const from = Math.max(1, parseInt($('#pr-from').value) || 1), to = parseInt($('#pr-to').value) || songs.length;
+  return songs.slice(from - 1, to).filter(s => isReady(s) && (qrMode() !== 'yt' || s.yt));
+}
+function renderPrint() {
+  const warn = [];
+  const b = baseUrl(), mode = qrMode();
+  $$('#pr-mode button').forEach(x => x.classList.toggle('on', x.dataset.mode === mode));
+  if (mode === 'yt') {
+    warn.push('<div class="okbox">Die QR-Codes öffnen <b>direkt YouTube</b> – dafür reicht jede Handy-Kamera oder QR-App, kein Hosting nötig. Achtung: Auf dem Handy sind <b>Titel und Video zu sehen</b>. Wer scannt, hält das Handy also verdeckt oder legt es mit dem Display nach unten. Ohne YouTube Premium kann vorher Werbung laufen.</div>');
+    const noYt = songs.filter(s => isReady(s) && !s.yt).length;
+    if (noYt) warn.push(`<div class="warnbox">${noYt} Song(s) ohne YouTube-Link werden übersprungen – Deezer-Links eignen sich nicht, weil Deezer Free auf dem Handy nur Zufallswiedergabe erlaubt.</div>`);
+  }
+  else if (!b) warn.push('<div class="warnbox">Diese Seite läuft gerade lokal. Trage unter <b>Einstellungen</b> die Online-Adresse ein, unter der du sie hostest – sonst lassen sich die Karten nur mit dem eingebauten Scanner im Spielmodus lesen, nicht mit der normalen Handy-Kamera.</div>');
+  else if (/\/\/(localhost|127\.|192\.168\.|10\.)/.test(b)) warn.push(`<div class="warnbox">Die QR-Codes zeigen auf <b>${esc(b)}</b> – das ist nur in deinem Netz erreichbar. Für die Handy-Kamera brauchst du eine Online-Adresse (Einstellungen).</div>`);
+  else warn.push(`<div class="okbox">QR-Codes zeigen auf <b>${esc(b)}</b></div>`);
+  const notReady = songs.filter(s => !isReady(s)).length;
+  if (notReady) warn.push(`<div class="warnbox">${notReady} Song(s) werden übersprungen, weil Jahr, Interpret/Titel oder eine Quelle fehlt (orange markiert in der Songliste).</div>`);
+  $('#print-warn').innerHTML = warn.join('');
+  $('#pr-mirror').checked = cfg.mirror;
+
+  const list = printList(); let html = '';
+  for (let i = 0; i < list.length; i += 12) {
+    const chunk = list.slice(i, i + 12), page = i / 12 + 1;
+    const fronts = [], backs = [];
+    for (let r = 0; r < 4; r++) {
+      const row = [0, 1, 2].map(c => chunk[r * 3 + c] || null);
+      fronts.push(...row.map(frontCard));
+      const br = row.map((s, c) => backCard(s, i + r * 3 + c));
+      if (cfg.mirror) br.reverse(); // beim Wenden über die lange Kante tauschen links und rechts
+      backs.push(...br);
+    }
+    html += `<div class="sheet"><div class="lbl">Blatt ${page} – Vorderseite</div>${fronts.join('')}</div><div class="sheet"><div class="lbl">Blatt ${page} – Rückseite</div>${backs.join('')}</div>`;
+  }
+  $('#pr-sheets').innerHTML = html || '<p class="hint" style="zoom:2;padding:20px">Keine druckbereiten Songs.</p>';
+  $('#print-out').innerHTML = html;
+  $('#pr-info').textContent = `${list.length} Karten auf ${Math.ceil(list.length / 12)} Blatt (je 12 Karten à 6 × 6 cm).`;
+}
+$('#pr-from').addEventListener('input', renderPrint);
+$('#pr-to').addEventListener('input', renderPrint);
+$('#pr-mirror').addEventListener('change', e => { cfg.mirror = e.target.checked; saveCfg(); renderPrint(); });
+$$('#pr-mode button').forEach(b => b.onclick = () => { cfg.qrMode = b.dataset.mode; saveCfg(); renderPrint(); });
+$('#b-print').onclick = () => { renderPrint(); if (!printList().length) return toast('Keine druckbereiten Songs.'); window.print(); };
+window.addEventListener('beforeprint', () => { if (!$('#print-out').innerHTML) renderPrint(); });
+
+/* ---------- Einstellungen ---------- */
+function renderSettings() {
+  $('#c-base').value = cfg.baseUrl; $('#c-base').placeholder = defaultBase() || 'https://deinname.github.io/zeitreise/';
+  $('#c-key').value = cfg.ytKey;
+  const b = baseUrl();
+  $('#c-base-info').innerHTML = b ? `Aktiv: <b>${esc(b)}</b>${cfg.baseUrl ? '' : ' (automatisch erkannt)'}` : 'Noch keine Adresse – die Seite läuft lokal.';
+  if (b) { $('#c-qr').innerHTML = qrSvg(b + '#play'); $('#c-qr-url').textContent = b + '#play'; }
+  else { $('#c-qr').innerHTML = ''; $('#c-qr-url').textContent = 'Erscheint, sobald eine Online-Adresse eingetragen ist.'; }
+}
+$('#c-base').addEventListener('change', e => {
+  let v = e.target.value.trim();
+  if (v && !/^https?:\/\//.test(v)) v = 'https://' + v;
+  cfg.baseUrl = v.replace(/#.*$/, ''); saveCfg(); renderSettings();
+});
+$('#c-key').addEventListener('change', e => { cfg.ytKey = e.target.value.trim(); saveCfg(); });
+$('#b-export').onclick = () => {
+  const blob = new Blob([JSON.stringify({ app: 'hit-zeitreise', version: 1, songs }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'zeitreise-songs.json'; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+};
+$('#b-import').onclick = () => $('#f-import').click();
+$('#f-import').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return; e.target.value = '';
+  try {
+    const j = JSON.parse(await f.text()); const list = (Array.isArray(j) ? j : j.songs || []).map(s => newSong(Object.assign({}, s, { id: uid() })));
+    if (!list.length) return toast('Keine Songs in der Datei gefunden.');
+    if (songs.length && confirm(`Die vorhandenen ${songs.length} Songs ersetzen?\n\nOK = ersetzen · Abbrechen = anhängen`)) songs = list; else songs.push(...list);
+    saveSongs(); renderSongs(); toast(`${list.length} Songs geladen.`);
+  } catch (err) { toast('Datei konnte nicht gelesen werden.'); }
+});
+$('#b-clear').onclick = () => { if (songs.length && confirm(`Wirklich alle ${songs.length} Songs löschen?`)) { songs = []; saveSongs(); renderSongs(); toast('Alle Songs gelöscht.'); } };
+
+/* ---------- Tabs & Ansichten ---------- */
+function showTab(t) {
+  $$('.tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+  $$('.tab').forEach(x => x.classList.toggle('hidden', x.id !== 'tab-' + t));
+  if (t === 'print') renderPrint();
+  if (t === 'settings') renderSettings();
+  LS.set('hs.tab', t);
+}
+$$('.tabs button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+$('#go-play').onclick = () => { location.hash = 'play'; };
+
+/* ---------- Spielmodus ---------- */
+let wakeLock = null;
+async function wake(on) {
+  try {
+    if (on && !wakeLock && navigator.wakeLock) { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', () => wakeLock = null); }
+    else if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
+  } catch (e) {}
+}
+const P = {
+  started: false, pending: null, lastKey: '',
+  status(m, err) { const el = $('#p-status'); el.textContent = m; el.classList.toggle('err', !!err); },
+  // „Spiel starten“: Dieser eine Tipp erlaubt dem Browser danach das automatische Abspielen
+  start() {
+    P.started = true;
+    $('#p-start').classList.add('hidden'); $('#p-game').classList.remove('hidden');
+    try { const d = document.documentElement; if (d.requestFullscreen && !document.fullscreenElement) d.requestFullscreen().catch(() => {}); } catch (e) {}
+    wake(true);
+    Engine.limit = true; Engine.on(P.handlers);
+    P.status('Halte eine Karte vor die Kamera');
+    Scanner.start();
+    if (P.pending) { const p = P.pending; P.pending = null; P.playCard(p); }
+  },
+  stop() {
+    P.started = false; P.lastKey = '';
+    Scanner.stop(); Engine.stop(); wake(false);
+    $('#p-start').classList.remove('hidden'); $('#p-game').classList.add('hidden');
+    $('#p-go').textContent = '▶ Spiel starten';
+  },
+  async playCard(p) {
+    const key = payloadStr({ yt: p.y, dz: p.d, start: p.s });
+    P.lastKey = key;
+    $('#p-bar').style.width = '0';
+    P.status('Einen Moment …');
+    Engine.limit = true; Engine.on(P.handlers);
+    try {
+      await Engine.load(p);
+      if (P.lastKey === key) Engine.play(); // inzwischen nicht schon die nächste Karte gescannt?
+    } catch (e) { P.status(e.message, true); }
+  },
+  onScan(p) {
+    const key = payloadStr({ yt: p.y, dz: p.d, start: p.s });
+    if (key === P.lastKey && Engine.mode) return; // dieselbe Karte nochmal: ignorieren, dafür gibt es „Nochmal“
+    if (navigator.vibrate) navigator.vibrate(80);
+    const cam = $('#p-cam'); cam.classList.add('hit'); setTimeout(() => cam.classList.remove('hit'), 700);
+    P.playCard(p);
+  },
+  handlers: {
+    state(st) {
+      const has = !!Engine.mode;
+      $('#p-toggle').disabled = $('#p-restart').disabled = !has;
+      $('#p-toggle').innerHTML = st === 'playing' ? ICON.pause + ' Pause' : st === 'ready' ? ICON.play + ' Abspielen' : ICON.play + ' Weiter';
+      $('#p-eq').classList.toggle('on', st === 'playing');
+      if (st === 'playing') P.status('♪ Wann war das?');
+      if (st === 'paused') P.status(Engine.timeUp ? 'Zeit um! Wann war das?' : 'Pause');
+      if (st === 'ended') P.status('Lied zu Ende – nächste Karte!');
+    },
+    tick(t, el) {
+      const total = Engine.mode === 'dz' ? 30 : cfg.stopAfter;
+      const shown = Engine.mode === 'dz' ? t : el;
+      $('.pbar').style.visibility = total > 0 ? 'visible' : 'hidden';
+      $('#p-bar').style.width = total > 0 ? Math.min(100, shown / total * 100) + '%' : '0';
+    },
+    error(m) { P.status(m, true); },
+    needTap(on) { document.body.classList.toggle('yt-tap', on); }
+  },
+  openCfg() {
+    $('#pc-rnd').checked = cfg.randomStart; $('#pc-min').value = cfg.rndMin; $('#pc-max').value = cfg.rndMax; $('#pc-stop').value = cfg.stopAfter;
+    $$('#p-src button').forEach(b => b.classList.toggle('on', b.dataset.src === cfg.source));
+    $$('#p-camsel button').forEach(b => b.classList.toggle('on', b.dataset.cam === cfg.cam));
+    $('#p-cfg').classList.remove('hidden');
+  }
+};
+$('#p-go').onclick = () => P.start();
+$('#p-toggle').onclick = () => Engine.mode && Engine.toggle();
+$('#p-restart').onclick = () => Engine.mode && Engine.restart();
+$('#p-back').onclick = () => { $('#p-cfg').classList.add('hidden'); P.stop(); location.hash = ''; };
+$$('#p-src button').forEach(b => b.onclick = () => {
+  cfg.source = b.dataset.src; saveCfg(); P.openCfg();
+  if (P.started && Engine.cur) P.playCard(Engine.cur);
+});
+$$('#p-camsel button').forEach(b => b.onclick = () => {
+  cfg.cam = b.dataset.cam; saveCfg(); P.openCfg();
+  if (P.started) Scanner.start();
+});
+// Zahnrad nur durch Gedrückthalten öffnen – damit niemand aus Versehen etwas verstellt
+const gear = $('#p-gear'); let gearT;
+gear.addEventListener('pointerdown', () => { gearT = setTimeout(P.openCfg, 800); });
+['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => gear.addEventListener(ev, () => clearTimeout(gearT)));
+gear.addEventListener('click', () => { if ($('#p-cfg').classList.contains('hidden')) toast('Zum Öffnen der Einstellungen gedrückt halten.'); });
+gear.addEventListener('contextmenu', e => e.preventDefault());
+$('#pc-close').onclick = () => {
+  cfg.randomStart = $('#pc-rnd').checked;
+  cfg.rndMin = Math.max(0, parseInt($('#pc-min').value) || 0);
+  cfg.rndMax = Math.max(cfg.rndMin, parseInt($('#pc-max').value) || cfg.rndMin);
+  cfg.stopAfter = Math.max(0, parseInt($('#pc-stop').value) || 0);
+  saveCfg(); $('#p-cfg').classList.add('hidden');
+};
+
+// Kamera läuft dauerhaft und sucht alle 0,2 s nach einer Karte
+const Scanner = {
+  stream: null, timer: null, canvas: document.createElement('canvas'),
+  async start() {
+    this.stop();
+    const err = $('#p-camerr'), cam = $('#p-cam');
+    err.classList.add('hidden'); cam.classList.remove('err');
+    cam.classList.toggle('mirror', cfg.cam === 'user');
+    try {
+      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: cfg.cam }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
+    } catch (e) {
+      err.textContent = window.isSecureContext ? 'Kein Zugriff auf die Kamera. Bitte in den Browser-Einstellungen erlauben und die Seite neu laden.' : 'Die Kamera funktioniert nur, wenn die Seite über https:// geöffnet ist.';
+      err.classList.remove('hidden'); cam.classList.add('err');
+      return;
+    }
+    if (!P.started) return this.stop();
+    const v = $('#sc-video'); v.srcObject = this.stream; try { await v.play(); } catch (e) {}
+    this.loop();
+  },
+  loop() {
+    if (!this.stream) return;
+    const v = $('#sc-video');
+    if (v.readyState >= 2 && v.videoWidth) {
+      const k = Math.min(1, 800 / Math.max(v.videoWidth, v.videoHeight));
+      const w = Math.round(v.videoWidth * k), h = Math.round(v.videoHeight * k);
+      const c = this.canvas; c.width = w; c.height = h;
+      const ctx = c.getContext('2d', { willReadFrequently: true }); ctx.drawImage(v, 0, 0, w, h);
+      const code = jsQR(ctx.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: 'dontInvert' });
+      const p = code && parsePayload(code.data);
+      if (p) P.onScan(p);
+    }
+    this.timer = setTimeout(() => this.loop(), 200);
+  },
+  stop() {
+    clearTimeout(this.timer);
+    if (this.stream) this.stream.getTracks().forEach(t => t.stop());
+    this.stream = null; $('#sc-video').srcObject = null;
+  }
+};
+// Tablet ausgeschaltet / App gewechselt: Kamera aus, Musik anhalten
+document.addEventListener('visibilitychange', () => {
+  if (!P.started) return;
+  if (document.hidden) { Scanner.stop(); Engine.pause(); } else { Scanner.start(); wake(true); }
+});
+
+/* ---------- Routing: #play bzw. Karten-Link → Spielmodus, sonst Editor ---------- */
+function route() {
+  const p = parsePayload(location.hash);
+  const play = !!p || location.hash === '#play';
+  $('#play').classList.toggle('hidden', !play);
+  $('#edit').classList.toggle('hidden', play);
+  if (play) {
+    PV.close();
+    if (p) {
+      history.replaceState(null, '', location.pathname + location.search + '#play');
+      if (P.started) P.playCard(p); else { P.pending = p; $('#p-go').textContent = '▶ Lied abspielen'; }
+    }
+  } else {
+    if (P.started) P.stop();
+    renderSongs();
+  }
+}
+window.addEventListener('hashchange', route);
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(() => {});
+$('#file-warn').classList.toggle('hidden', location.protocol !== 'file:');
+showTab(LS.get('hs.tab', 'songs'));
+route();
+</script>
+</body>
+</html>
