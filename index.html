@@ -339,7 +339,7 @@ dialog::backdrop{background:#000a}
     <h2>Songliste einfügen</h2>
     <p class="hint">Eine Zeile pro Song: <code>Interpret - Titel</code>, optional mit Jahr: <code>Queen - Bohemian Rhapsody (1975)</code>. Deezer-ID, Jahr und – mit API-Schlüssel – der YouTube-Link werden danach automatisch gesucht.</p>
     <textarea id="bulk-text" rows="10" placeholder="Nena - 99 Luftballons&#10;a-ha - Take On Me&#10;Dua Lipa - Levitating"></textarea>
-    <div class="dlg-actions"><button class="btn" value="cancel">Abbrechen</button><button class="btn primary" value="ok">Hinzufügen &amp; ergänzen</button></div>
+    <div class="dlg-actions"><button type="button" class="btn" onclick="this.closest('dialog').close('cancel')">Abbrechen</button><button class="btn primary" value="ok">Hinzufügen &amp; ergänzen</button></div>
   </form>
 </dialog>
 
@@ -348,7 +348,7 @@ dialog::backdrop{background:#000a}
     <h2>YouTube-Music-Playlist importieren</h2>
     <p class="hint">Link einer <b>öffentlichen oder nicht gelisteten</b> Playlist einfügen (YouTube oder YouTube Music). „Mein Mix“ und „Lieblingssongs“ sind privat und funktionieren nicht – kopiere die Songs vorher in eine eigene Playlist. Benötigt den YouTube-API-Schlüssel aus den Einstellungen.</p>
     <input id="pl-url" placeholder="https://music.youtube.com/playlist?list=PL…">
-    <div class="dlg-actions"><button class="btn" value="cancel">Abbrechen</button><button class="btn primary" value="ok">Importieren</button></div>
+    <div class="dlg-actions"><button type="button" class="btn" onclick="this.closest('dialog').close('cancel')">Abbrechen</button><button class="btn primary" value="ok">Importieren</button></div>
   </form>
 </dialog>
 
@@ -776,7 +776,11 @@ $('#dlg-bulk').addEventListener('close', () => {
 });
 
 $('#b-pl').onclick = () => {
-  if (!cfg.ytKey) { toast('Dafür brauchst du einen YouTube-API-Schlüssel (Einstellungen).', 5000); return showTab('settings'); }
+  if (!cfg.ytKey) {
+    toast('Für den Playlist-Import brauchst du einen YouTube-API-Schlüssel – bitte hier eintragen.', 8000);
+    showTab('settings'); const k = $('#c-key'); k.focus(); k.scrollIntoView({ block: 'center' });
+    return;
+  }
   $('#pl-url').value = ''; $('#dlg-pl').showModal();
 };
 $('#dlg-pl').addEventListener('close', async () => {
@@ -801,7 +805,7 @@ $('#dlg-pl').addEventListener('close', async () => {
     saveSongs(); renderSongs();
     toast(`${added.length} Songs importiert – suche jetzt Jahr & Deezer-ID …`);
     if (added.length) runAutofill(added, { names: true }); else $('#progress').textContent = '';
-  } catch (e) { $('#progress').textContent = ''; toast(e.message, 6000); }
+  } catch (e) { $('#progress').innerHTML = '<span style="color:#ffb4a0">Playlist-Import fehlgeschlagen: ' + esc(e.message) + '</span>'; toast(e.message, 8000); }
 });
 
 /* ---------- Editor: Vorschau-Leiste ---------- */
