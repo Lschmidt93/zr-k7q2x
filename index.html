@@ -107,43 +107,96 @@ tr.busy .b-auto svg{animation:spin 1s linear infinite}
 .c5{background:linear-gradient(135deg,#ff8a3d,#ffe14d)}
 #print-out{display:none}
 
-/* ---------- Spielmodus (für Senioren: groß, wenige Knöpfe, alles automatisch) ---------- */
-#play{height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#2b1f63 0%,var(--bg) 60%);font-size:20px;user-select:none;-webkit-user-select:none}
-.pstart{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px;text-align:center}
-.pstart .logo{font-size:clamp(40px,9vw,72px)}
-.huge{font-size:clamp(26px,5vw,38px);padding:26px 56px;border-radius:24px;box-shadow:0 10px 40px #ff4fa355}
-.pstart p{color:var(--muted);max-width:520px;margin:0;font-size:19px}
-.pgame{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:16px;padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(16px,env(safe-area-inset-bottom))}
-@media (orientation:landscape){ .pgame{grid-template-rows:none;grid-template-columns:minmax(0,1fr) minmax(320px,44%)} }
-.camwrap{position:relative;border-radius:24px;overflow:hidden;background:#000;min-height:0}
-.camwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.camwrap.mirror video{transform:scaleX(-1)}
-.camwrap .frame{position:absolute;left:50%;top:50%;width:min(62%,62vh);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:24px;border:5px solid var(--cyan);box-shadow:0 0 0 9999px #0007;transition:border-color .2s,box-shadow .2s}
-.camwrap.hit .frame{border-color:var(--green);box-shadow:0 0 0 9999px #0007,0 0 40px var(--green)}
-.camwrap .camhint{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-weight:700;font-size:22px;text-shadow:0 2px 8px #000}
-.camwrap.err .frame,.camwrap.err .camhint{display:none}
-.camwrap .camerr{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:20px}
-.pinfo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;min-width:0}
-#p-status{font-size:clamp(22px,4vw,30px);font-weight:700;line-height:1.25;margin:0;min-height:2.5em;display:flex;align-items:center}
-#p-status.err{color:#ffb4a0}
-.eq{display:flex;gap:7px;align-items:flex-end;height:56px}
-.eq i{width:12px;height:12px;border-radius:6px;background:linear-gradient(var(--pink),var(--cyan))}
-.eq.on i{animation:eq .9s ease-in-out infinite}
-.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}.eq i:nth-child(4){animation-delay:-.15s}.eq i:nth-child(5){animation-delay:-.45s}
-@keyframes eq{50%{height:56px}}
-.pbar{width:min(90%,420px);height:10px;background:#0c0a1e;border-radius:5px;overflow:hidden;visibility:hidden}
-.pbar div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink))}
-.pbtns{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(100%,460px)}
-.bigbtn{font-size:24px;font-weight:700;padding:22px 10px;border-radius:20px;border:2px solid var(--line);background:var(--panel2);display:flex;align-items:center;justify-content:center;gap:10px}
+/* ---------- Spielmodus (für Senioren: groß, wenige Knöpfe) ---------- */
+#play{height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#2b1f63 0%,var(--bg) 60%);font-size:20px;user-select:none;-webkit-user-select:none;display:flex;flex-direction:column}
+.pview{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:18px;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom));text-align:center}
+.pview>:first-child{margin-top:auto}.pview>:last-child{margin-bottom:auto}
+#v-start .logo{font-size:clamp(40px,9vw,72px)}
+.pview p.hint{font-size:17px;max-width:520px;margin:0}
+.pbtncol{display:flex;flex-direction:column;gap:14px;width:min(100%,460px)}
+.bigbtn{font-size:24px;font-weight:700;padding:20px 12px;border-radius:20px;border:2px solid var(--line);background:var(--panel2);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;line-height:1.2}
+.bigbtn small{font-size:16px;font-weight:600;opacity:.8;width:100%}
 .bigbtn svg{width:28px;height:28px}
 .bigbtn:disabled{opacity:.35}
+.bigbtn.primary{background:linear-gradient(135deg,var(--pink),var(--orange));color:#160f2c;border:0;box-shadow:0 8px 30px #ff4fa344}
+.bigbtn.ghost{background:transparent;font-size:20px;padding:14px 12px}
+.bigbtn.toggle.on{background:#16473a;border-color:var(--green)}
+.bigbtn.toggle.on::before{content:'✓';color:var(--green);font-size:28px}
+.pbtns{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(100%,460px)}
+.turn{font-size:clamp(22px,4.5vw,32px);font-weight:800;margin:0;line-height:1.25}
+.turn span{color:var(--yellow)}
+.turn small{display:block;font-size:.65em;font-weight:600;color:var(--muted)}
+
+/* Spieler eintragen */
+.plist{display:flex;flex-direction:column;gap:10px;width:min(100%,460px)}
+.plist .prow{display:flex;gap:8px}
+.plist input{font-size:22px;padding:12px 14px;border-radius:14px}
+.plist button{font-size:22px;width:56px;border-radius:14px;border:2px solid var(--line);background:var(--panel2)}
+.opts{display:grid;grid-template-columns:1fr auto;gap:12px 14px;align-items:center;width:min(100%,460px);text-align:left;font-size:20px}
+.opts select{font-size:20px;padding:10px 12px;width:auto;border-radius:12px}
+
+/* Punktestand oben */
+.ptop{padding:10px 60px 0;padding-top:max(10px,env(safe-area-inset-top))}
+.score{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.score .pl{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:6px 14px;display:flex;flex-direction:column;line-height:1.2}
+.score .pl b{font-size:18px}
+.score .pl span{font-size:14px;color:var(--muted)}
+.score .pl.cur{border-color:var(--yellow);box-shadow:0 0 18px #ffe14d44}
+
+/* Kamera */
+.camwrap{position:relative;border-radius:24px;overflow:hidden;background:#000;width:min(92vw,58vh,560px);aspect-ratio:1;flex:none}
+.camwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.camwrap.mirror video{transform:scaleX(-1)}
+.camwrap .frame{position:absolute;inset:14%;border-radius:24px;border:5px solid var(--cyan);box-shadow:0 0 0 9999px #0007;transition:border-color .2s,box-shadow .2s}
+.camwrap.hit .frame{border-color:var(--green);box-shadow:0 0 0 9999px #0007,0 0 40px var(--green)}
+.camwrap .camhint{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-weight:700;font-size:20px;text-shadow:0 2px 8px #000}
+.camwrap.err .frame,.camwrap.err .camhint{display:none}
+.camwrap .camerr{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-size:20px}
+
+/* Karte mit Umdrehen */
+#v-card .ctrl{display:flex;flex-direction:column;align-items:center;gap:16px;width:min(100%,460px)}
+@media (orientation:landscape) and (min-width:700px){ #v-card{flex-direction:row;gap:48px;justify-content:center} #v-card>*{margin-top:auto;margin-bottom:auto} }
+.flip{width:min(84vw,50vh,440px);aspect-ratio:1;perspective:1200px;cursor:pointer;flex:none}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.open .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px #0009;container-type:size}
+.face.fr{background:#15122e}
+.face.fr .r{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);border:1.2cqw solid}
+.face.fr .r1{width:93%;height:93%;border-color:var(--pink)}
+.face.fr .r2{width:82%;height:82%;border-color:var(--cyan)}
+.face.fr .r3{width:70%;height:70%;border-color:var(--yellow)}
+.face.fr .qr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:55%;height:55%;background:#fff;border-radius:4cqw;padding:2cqw}
+.face.fr .qr svg{width:100%;height:100%;display:block}
+.face.bk{transform:rotateY(180deg);color:#150f28;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:8cqw 6cqw}
+.face.bk .ar{font-weight:800;font-size:9cqw;line-height:1.15}
+.face.bk .yr{font-weight:900;font-size:27cqw;line-height:1;letter-spacing:-.5cqw}
+.face.bk .ti{font-style:italic;font-weight:600;font-size:8.5cqw;line-height:1.2}
+.face.bk .sm{font-size:7cqw}
+.face.bk .xs{font-size:5.8cqw}
+.face.bk .note{font-style:normal;font-weight:400;font-size:4.6cqw;opacity:.75;margin-top:2cqw}
+#p-status{font-size:clamp(20px,3.6vw,26px);font-weight:700;line-height:1.25;margin:0;display:flex;align-items:center;gap:12px;min-height:1.4em}
+#p-status.err{color:#ffb4a0}
+.eq{display:inline-flex;gap:4px;align-items:flex-end;height:26px}
+.eq i{width:6px;height:6px;border-radius:3px;background:linear-gradient(var(--pink),var(--cyan))}
+.eq.on i{animation:eq .9s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}.eq i:nth-child(4){animation-delay:-.15s}
+@keyframes eq{50%{height:26px}}
+.pbar{width:100%;height:10px;background:#0c0a1e;border-radius:5px;overflow:hidden;visibility:hidden}
+.pbar div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink))}
+#v-win .trophy{font-size:90px;line-height:1}
+#win-list{display:flex;flex-direction:column;gap:6px;font-size:20px}
+
+/* Zahnrad und Einstellungen */
 .gear{position:fixed;right:10px;top:max(10px,env(safe-area-inset-top));width:44px;height:44px;border-radius:50%;border:0;background:#0006;color:#fff8;font-size:22px;z-index:5}
 .seg{display:flex;background:#0c0a1e;border:1px solid var(--line);border-radius:10px;padding:3px}
 .seg button{background:none;border:0;padding:8px 14px;border-radius:7px;color:var(--muted)}
 .seg button.on{background:var(--panel2);color:var(--text)}
-.sheetbox{position:fixed;inset:auto 0 0 0;max-height:90vh;overflow:auto;background:var(--panel);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom));z-index:45;box-shadow:0 -10px 40px #0009;font-size:16px}
+.sheetbox{position:fixed;inset:auto 0 0 0;max-height:90vh;overflow:auto;background:var(--panel);border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom));z-index:45;box-shadow:0 -10px 40px #0009;font-size:16px;text-align:left}
 .sheetbox label{display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap}
 .sheetbox input[type=number]{width:80px}
+.fixrow{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+.fixrow b{min-width:110px}
+.fixrow button{width:38px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--panel2)}
 
 /* YouTube-Player: unsichtbar, außer in der Editor-Vorschau oder für den einmaligen Tipp auf iOS */
 #ytwrap{position:fixed;right:0;bottom:0;width:200px;height:200px;opacity:.001;pointer-events:none;z-index:0}
@@ -276,6 +329,9 @@ dialog::backdrop{background:#000a}
           <input type="file" id="f-import" accept=".json,application/json" class="hidden">
           <button class="btn" id="b-clear">Alle Songs löschen</button>
         </div>
+        <h3 style="margin-top:16px">Lösungsdatei für den Spielmodus</h3>
+        <p class="hint">Damit „Lösung zeigen“ Titel, Interpret und Jahr anzeigen kann, diese Datei zusammen mit der App bei GitHub hochladen. Nach jeder Änderung an der Songliste neu erzeugen und hochladen.</p>
+        <button class="btn" id="b-export-sol">songs.json herunterladen</button>
       </div>
     </div>
   </div>
@@ -294,37 +350,102 @@ dialog::backdrop{background:#000a}
 
 <!-- ===================== SPIELMODUS ===================== -->
 <section id="play" class="hidden">
-  <div class="pstart" id="p-start">
+  <div class="ptop hidden" id="p-top"><div class="score" id="p-score"></div></div>
+
+  <!-- Start -->
+  <div class="pview" id="v-start">
     <div class="logo"><span>Hit-Zeitreise</span></div>
-    <button class="btn primary huge" id="p-go">▶ Spiel starten</button>
-    <p id="p-start-hint">Danach einfach eine Karte vor die Kamera halten –<br>die Musik startet von selbst.</p>
+    <div class="pbtncol">
+      <button class="bigbtn primary hidden" id="b-resume"></button>
+      <button class="bigbtn primary" id="b-newgame">Neues Spiel mit Punkten</button>
+      <button class="bigbtn" id="b-free">▶ Einfach spielen<small>ohne Punkte</small></button>
+    </div>
+    <p class="hint" id="start-hint">Karte vor die Kamera halten – die Musik startet von selbst.</p>
   </div>
-  <div class="pgame hidden" id="p-game">
+
+  <!-- Spieler eintragen -->
+  <div class="pview hidden" id="v-setup">
+    <h2 class="turn">Wer spielt mit?</h2>
+    <div class="plist" id="setup-names"></div>
+    <button class="bigbtn ghost" id="b-addpl">+ Spieler hinzufügen</button>
+    <div class="opts">
+      <label for="o-len">Lied spielt</label>
+      <select id="o-len"><option value="30">30 Sekunden</option><option value="45">45 Sekunden</option><option value="60">1 Minute</option><option value="0">bis zum Ende</option></select>
+      <label for="o-target">Gewonnen hat, wer</label>
+      <select id="o-target"><option value="5">5 Karten hat</option><option value="8">8 Karten hat</option><option value="10">10 Karten hat</option><option value="15">15 Karten hat</option><option value="0">– ohne Ende –</option></select>
+      <label for="o-jokers">Joker zum Start</label>
+      <select id="o-jokers"><option value="0">keiner</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+    </div>
+    <p class="hint">Karte richtig eingeordnet = Karte behalten. Titel und Interpret gewusst = 1 Joker.<br>Mit einem Joker darf man ein Lied gegen ein anderes tauschen.</p>
+    <div class="pbtncol">
+      <button class="bigbtn primary" id="b-go">Los geht's</button>
+      <button class="bigbtn ghost" id="b-setup-back">Zurück</button>
+    </div>
+  </div>
+
+  <!-- Karte scannen -->
+  <div class="pview hidden" id="v-scan">
+    <h2 class="turn" id="scan-turn"></h2>
     <div class="camwrap" id="p-cam">
       <video id="sc-video" playsinline muted autoplay></video>
       <div class="frame"></div>
       <div class="camhint">Karte hier vorhalten</div>
       <div class="camerr hidden" id="p-camerr"></div>
     </div>
-    <div class="pinfo">
-      <div class="eq" id="p-eq"><i></i><i></i><i></i><i></i><i></i></div>
-      <p id="p-status">Halte eine Karte vor die Kamera</p>
+  </div>
+
+  <!-- Karte mit Musik und Lösung -->
+  <div class="pview hidden" id="v-card">
+    <div class="flip" id="p-flip" title="Tippen zum Umdrehen">
+      <div class="flip-in"><div class="face fr" id="p-front"></div><div class="face bk" id="p-back"></div></div>
+    </div>
+    <div class="ctrl">
+      <h2 class="turn" id="card-turn"></h2>
+      <p id="p-status"><span class="eq" id="p-eq"><i></i><i></i><i></i><i></i></span><span id="p-status-t">Einen Moment …</span></p>
       <div class="pbar"><div id="p-bar"></div></div>
       <div class="pbtns">
         <button class="bigbtn" id="p-toggle" disabled>Pause</button>
         <button class="bigbtn" id="p-restart" disabled>↺ Nochmal</button>
       </div>
+      <div class="pbtncol" id="before-reveal">
+        <button class="bigbtn primary" id="b-reveal">Lösung zeigen</button>
+        <button class="bigbtn ghost hidden" id="b-swap">⇄ Lied tauschen<small>kostet 1 Joker</small></button>
+      </div>
+      <div class="pbtncol hidden" id="after-reveal">
+        <div class="pbtncol hidden" id="judge">
+          <button class="bigbtn toggle" id="j-title">Titel &amp; Interpret gewusst<small>+1 Joker</small></button>
+          <button class="bigbtn toggle" id="j-year">Richtig eingeordnet<small>Karte behalten</small></button>
+        </div>
+        <button class="bigbtn primary" id="b-next">Nächste Karte</button>
+      </div>
     </div>
   </div>
+
+  <!-- Gewonnen -->
+  <div class="pview hidden" id="v-win">
+    <div class="trophy">🏆</div>
+    <h2 class="turn" id="win-title"></h2>
+    <div id="win-list"></div>
+    <div class="pbtncol">
+      <button class="bigbtn primary" id="b-win-new">Neues Spiel</button>
+      <button class="bigbtn ghost" id="b-win-start">Zum Start</button>
+    </div>
+  </div>
+
   <button class="gear" id="p-gear" title="Einstellungen: gedrückt halten" aria-label="Einstellungen (gedrückt halten)">⚙</button>
   <div class="sheetbox hidden" id="p-cfg">
     <h3>Einstellungen</h3>
+    <div id="pc-game" class="hidden">
+      <h3>Punkte korrigieren</h3>
+      <div id="pc-score"></div>
+      <div class="row" style="margin:8px 0 14px"><button class="btn" id="pc-end">Spiel beenden</button></div>
+    </div>
     <label>Musik von <span class="seg" id="p-src"><button data-src="yt">YouTube</button><button data-src="dz">Deezer (30 s)</button></span></label>
     <label>Kamera <span class="seg" id="p-camsel"><button data-cam="user">vorne (Tablet)</button><button data-cam="environment">hinten</button></span></label>
     <label><input type="checkbox" id="pc-rnd"> Zufälliger Startpunkt, wenn auf der Karte keiner gespeichert ist</label>
     <label>zwischen <input type="number" id="pc-min" min="0"> und <input type="number" id="pc-max" min="0"> Sekunden</label>
     <label>Automatisch stoppen nach <input type="number" id="pc-stop" min="0"> Sekunden (0 = nie)</label>
-    <p class="hint">Deezer-Hörproben sind immer 30 s lang und meist schon ein Ausschnitt aus der Songmitte. Wenn ein YouTube-Video gesperrt ist, wird automatisch Deezer genommen.</p>
+    <p class="hint" id="pc-sol"></p>
     <div class="row"><button class="btn primary" id="pc-close">Fertig</button><button class="btn" id="p-back">Zur Song-Verwaltung</button></div>
   </div>
 </section>
@@ -382,8 +503,9 @@ let toastT;
 function toast(msg, ms = 3800) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), ms); }
 
 /* ---------- Daten ---------- */
-const DEF_CFG = { baseUrl: '', ytKey: '', source: 'yt', randomStart: true, rndMin: 30, rndMax: 60, stopAfter: 0, mirror: true, cam: 'user' };
+const DEF_CFG = { baseUrl: '', ytKey: '', source: 'yt', randomStart: true, rndMin: 30, rndMax: 60, stopAfter: 30, mirror: true, cam: 'user' };
 let cfg = Object.assign({}, DEF_CFG, LS.get('hs.cfg', {}));
+if (!cfg.v2) { if (!cfg.stopAfter) cfg.stopAfter = 30; cfg.v2 = true; LS.set('hs.cfg', cfg); } // einmalig: nicht mehr endlos spielen
 let songs = LS.get('hs.songs', []);
 const saveCfg = () => LS.set('hs.cfg', cfg);
 const saveSongs = () => LS.set('hs.songs', songs);
@@ -627,7 +749,12 @@ const Engine = {
       this.tapT = setTimeout(() => {
         if (this.mode !== 'yt' || ok()) return;
         this.yt.playVideo();
-        this.tapT = setTimeout(() => { if (this.mode === 'yt' && !ok()) this.h.needTap(true); }, 1500);
+        this.tapT = setTimeout(() => {
+          if (this.mode !== 'yt' || ok()) return;
+          // nach geblocktem Start zeigt YouTube keinen Play-Knopf – neu laden, dann ist er wieder da
+          this.yt.cueVideoById({ videoId: this.cur.y, startSeconds: this.startAt });
+          this.h.needTap(true);
+        }, 1500);
       }, 1200);
     } else if (this.mode === 'dz') {
       this.audio.play().catch(() => this.h.error('Wiedergabe blockiert – bitte auf „Weiter“ tippen.'));
@@ -918,11 +1045,13 @@ $('#c-base').addEventListener('change', e => {
   cfg.baseUrl = v.replace(/#.*$/, ''); saveCfg(); renderSettings();
 });
 $('#c-key').addEventListener('change', e => { cfg.ytKey = e.target.value.trim(); saveCfg(); });
-$('#b-export').onclick = () => {
+function downloadSongs(name) {
   const blob = new Blob([JSON.stringify({ app: 'hit-zeitreise', version: 1, songs }, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'zeitreise-songs.json'; a.click();
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-};
+}
+$('#b-export').onclick = () => downloadSongs('zeitreise-songs.json');
+$('#b-export-sol').onclick = () => downloadSongs('songs.json');
 $('#b-import').onclick = () => $('#f-import').click();
 $('#f-import').addEventListener('change', async e => {
   const f = e.target.files[0]; if (!f) return; e.target.value = '';
@@ -954,53 +1083,189 @@ async function wake(on) {
     else if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
   } catch (e) {}
 }
+/* Lösungen: Die QR-Codes enthalten nur YouTube-/Deezer-Nummern. Titel, Interpret und Jahr kommen aus
+   songs.json (die Song-Sicherung, mit hochgeladen) – oder, am PC, aus der eigenen Songliste. */
+const Sol = {
+  byYt: new Map(), byDz: new Map(), count: 0, src: '',
+  index(list, src) {
+    this.byYt.clear(); this.byDz.clear();
+    list.filter(isReady).forEach((s, i) => { // i = Position wie beim Drucken → gleiche Kartenfarbe
+      const e = { s, i };
+      if (s.yt && !this.byYt.has(s.yt)) this.byYt.set(s.yt, e);
+      if (s.dz && !this.byDz.has(String(s.dz))) this.byDz.set(String(s.dz), e);
+    });
+    this.count = list.filter(isReady).length; this.src = src;
+  },
+  async load() {
+    try {
+      const r = await fetch('songs.json', { cache: 'no-cache' });
+      if (!r.ok) throw new Error();
+      const j = await r.json(), list = Array.isArray(j) ? j : j.songs || [];
+      if (!list.length) throw new Error();
+      this.index(list, 'songs.json');
+    } catch (e) { this.index(songs, 'lokal'); }
+  },
+  find(p) { return (p.y && this.byYt.get(p.y)) || (p.d && this.byDz.get(String(p.d))) || null; }
+};
+
+/* Punktespiel – bleibt gespeichert, falls das Tablet ausgeht oder die Seite neu lädt */
+const G = {
+  st: LS.get('hs.game', null), // { players:[{name,cards,jokers}], cur, target, over }
+  save() { LS.set('hs.game', this.st); },
+  cur() { return this.st.players[this.st.cur]; },
+  nextName() { return this.st.players[(this.st.cur + 1) % this.st.players.length].name; },
+  active() { return P.mode === 'game' && this.st && !this.st.over; }
+};
+
 const P = {
-  started: false, pending: null, lastKey: '',
-  status(m, err) { const el = $('#p-status'); el.textContent = m; el.classList.toggle('err', !!err); },
-  // „Spiel starten“: Dieser eine Tipp erlaubt dem Browser danach das automatische Abspielen
-  start() {
-    P.started = true;
-    $('#p-start').classList.add('hidden'); $('#p-game').classList.remove('hidden');
+  started: false, mode: 'free', view: 'start', pending: null, pendingRaw: '', lastKey: '', revealed: false, info: null, judge: { t: false, y: false },
+  show(v) {
+    P.view = v;
+    ['start', 'setup', 'scan', 'card', 'win'].forEach(x => $('#v-' + x).classList.toggle('hidden', x !== v));
+    $('#p-top').classList.toggle('hidden', !(G.active() && (v === 'scan' || v === 'card')));
+    if (v === 'scan') Scanner.start(); else Scanner.stop();
+    if (v === 'start') P.renderStart();
+    P.renderTurn();
+  },
+  status(m, err) { $('#p-status-t').textContent = m; $('#p-status').classList.toggle('err', !!err); },
+  // Erster Tipp: Vollbild, Bildschirm bleibt an, Browser erlaubt danach automatisches Abspielen
+  enter(mode) {
+    P.started = true; P.mode = mode;
     try { const d = document.documentElement; if (d.requestFullscreen && !document.fullscreenElement) d.requestFullscreen().catch(() => {}); } catch (e) {}
     wake(true);
     Engine.limit = true; Engine.on(P.handlers);
-    P.status('Halte eine Karte vor die Kamera');
-    Scanner.start();
-    if (P.pending) { const p = P.pending; P.pending = null; P.playCard(p); }
+    if (P.pending) { const p = P.pending; P.pending = null; P.openCard(p, P.pendingRaw); } else P.show('scan');
   },
   stop() {
     P.started = false; P.lastKey = '';
     Scanner.stop(); Engine.stop(); wake(false);
-    $('#p-start').classList.remove('hidden'); $('#p-game').classList.add('hidden');
-    $('#p-go').textContent = '▶ Spiel starten';
+    $('#p-cfg').classList.add('hidden');
+    P.show('start');
+  },
+  renderStart() {
+    const g = G.st && !G.st.over;
+    $('#b-resume').classList.toggle('hidden', !g);
+    if (g) $('#b-resume').innerHTML = `▶ Weiterspielen<small>${esc(G.st.players.map(p => p.name).join(', '))}</small>`;
+    $('#start-hint').textContent = P.pending ? 'Karte erkannt – wie wollt ihr spielen?' : 'Karte vor die Kamera halten – die Musik startet von selbst.';
+  },
+  renderTurn() {
+    const g = G.active(), name = g ? esc(G.cur().name) : '';
+    $('#scan-turn').innerHTML = g ? `<span>${name}</span> ist dran<small>Karte vor die Kamera halten</small>` : 'Karte vor die Kamera halten';
+    $('#card-turn').innerHTML = g ? `<span>${name}</span>: Wann war das?` : '';
+    if (G.st) $('#p-score').innerHTML = G.st.players.map((p, i) =>
+      `<div class="pl ${i === G.st.cur ? 'cur' : ''}"><b>${esc(p.name)}</b><span>${p.cards} ${p.cards === 1 ? 'Karte' : 'Karten'} · ${p.jokers} Joker</span></div>`).join('');
+  },
+
+  /* --- Spieler eintragen --- */
+  setup() {
+    const names = (G.st && G.st.players.map(p => p.name)) || LS.get('hs.names', ['', '']);
+    $('#setup-names').innerHTML = ''; names.forEach(n => P.addPlayerRow(n));
+    $('#o-len').value = String([30, 45, 60, 0].includes(cfg.stopAfter) ? cfg.stopAfter : 30);
+    $('#o-target').value = String(LS.get('hs.target', 10));
+    $('#o-jokers').value = String(LS.get('hs.jokers', 0));
+    P.show('setup');
+  },
+  addPlayerRow(name = '') {
+    const box = $('#setup-names'); if (box.children.length >= 8) return toast('Maximal 8 Spieler.');
+    const row = document.createElement('div'); row.className = 'prow';
+    row.innerHTML = `<input placeholder="Name" maxlength="16" autocomplete="off"><button aria-label="Entfernen">✕</button>`;
+    row.querySelector('input').value = name;
+    row.querySelector('button').onclick = () => { if (box.children.length > 1) row.remove(); };
+    box.appendChild(row);
+  },
+  go() {
+    const names = $$('#setup-names input').map(i => i.value.trim()).filter(Boolean);
+    if (!names.length) return toast('Bitte mindestens einen Namen eintragen.');
+    cfg.stopAfter = +$('#o-len').value; saveCfg();
+    const target = +$('#o-target').value, jokers = +$('#o-jokers').value;
+    LS.set('hs.names', names); LS.set('hs.target', target); LS.set('hs.jokers', jokers);
+    G.st = { players: names.map(name => ({ name, cards: 0, jokers })), cur: 0, target, over: false }; G.save();
+    P.enter('game');
+  },
+
+  /* --- Karte --- */
+  onScan(p, raw) {
+    const key = payloadStr({ yt: p.y, dz: p.d, start: p.s });
+    if (key === P.lastKey) return; // dieselbe Karte wie eben – ignorieren
+    if (navigator.vibrate) navigator.vibrate(80);
+    const cam = $('#p-cam'); cam.classList.add('hit'); setTimeout(() => cam.classList.remove('hit'), 700);
+    P.openCard(p, raw);
+  },
+  openCard(p, raw) {
+    P.lastKey = payloadStr({ yt: p.y, dz: p.d, start: p.s });
+    P.revealed = false; P.judge = { t: false, y: false }; P.curP = p;
+    const text = raw || (baseUrl() || 'zeitreise:') + '#' + payloadStr({ yt: p.y, dz: p.d, start: p.s });
+    $('#p-flip').classList.remove('open');
+    $('#p-front').innerHTML = `<div class="r r1"></div><div class="r r2"></div><div class="r r3"></div><div class="qr">${qrSvg(text)}</div>`;
+    $('#p-back').innerHTML = '';
+    $('#before-reveal').classList.remove('hidden'); $('#after-reveal').classList.add('hidden');
+    $('#b-swap').classList.toggle('hidden', !(G.active() && G.cur().jokers > 0));
+    $$('#judge .toggle').forEach(b => b.classList.remove('on'));
+    $('#p-bar').style.width = '0';
+    P.show('card');
+    P.playCard(p);
   },
   async playCard(p) {
-    const key = payloadStr({ yt: p.y, dz: p.d, start: p.s });
-    P.lastKey = key;
-    $('#p-bar').style.width = '0';
+    const key = P.lastKey;
     P.status('Einen Moment …');
     Engine.limit = true; Engine.on(P.handlers);
     try {
       await Engine.load(p);
-      if (P.lastKey === key) Engine.play(); // inzwischen nicht schon die nächste Karte gescannt?
+      if (P.lastKey === key && P.view === 'card') Engine.play();
     } catch (e) { P.status(e.message, true); }
   },
-  onScan(p) {
-    const key = payloadStr({ yt: p.y, dz: p.d, start: p.s });
-    if (key === P.lastKey && Engine.mode) return; // dieselbe Karte nochmal: ignorieren, dafür gibt es „Nochmal“
-    if (navigator.vibrate) navigator.vibrate(80);
-    const cam = $('#p-cam'); cam.classList.add('hit'); setTimeout(() => cam.classList.remove('hit'), 700);
-    P.playCard(p);
+  reveal() {
+    if (P.revealed) return; P.revealed = true;
+    P.info = Sol.find(P.curP); // erst jetzt nachschlagen – songs.json ist dann sicher geladen
+    let ar, ti, yr, cls, note = '';
+    if (P.info) { ar = P.info.s.artist; ti = P.info.s.title; yr = P.info.s.year; cls = 'c' + (P.info.i % 6); }
+    else { // nicht in der Lösungsdatei: wenigstens Titel/Interpret vom Musikdienst
+      if (Engine.mode === 'dz' && Engine.dzInfo) { ar = Engine.dzInfo.artist.name; ti = Engine.dzInfo.title; }
+      else { const d = (Engine.yt && Engine.yt.getVideoData && Engine.yt.getVideoData()) || {}; ar = (d.author || '').replace(/\s*-\s*Topic$/i, ''); ti = d.title || ''; }
+      yr = '?'; cls = 'c2'; note = 'Jahr: siehe gedruckte Karte';
+    }
+    const back = $('#p-back'); back.className = 'face bk ' + cls;
+    back.innerHTML = `<div class="ar ${sz(ar, 26, 48)}">${esc(ar)}</div><div class="yr">${esc(yr)}</div><div class="ti ${sz(ti, 30, 60)}">${esc(ti)}${note ? `<div class="note">${note}</div>` : ''}</div>`;
+    $('#p-flip').classList.add('open');
+    $('#before-reveal').classList.add('hidden'); $('#after-reveal').classList.remove('hidden');
+    const g = G.active();
+    $('#judge').classList.toggle('hidden', !g);
+    $('#b-next').textContent = g && G.st.players.length > 1 ? `Weiter – ${G.nextName()} ist dran` : 'Nächste Karte';
   },
+  next() {
+    Engine.stop();
+    if (G.active()) {
+      const pl = G.cur();
+      if (P.judge.t) pl.jokers++;
+      if (P.judge.y) pl.cards++;
+      if (G.st.target && pl.cards >= G.st.target) { G.st.over = true; G.save(); return P.win(pl); }
+      G.st.cur = (G.st.cur + 1) % G.st.players.length; G.save();
+    }
+    P.show('scan');
+  },
+  swap() {
+    if (!G.active() || G.cur().jokers < 1) return;
+    G.cur().jokers--; G.save(); Engine.stop();
+    toast(`${G.cur().name} tauscht – neue Karte!`);
+    P.show('scan');
+  },
+  win(pl) {
+    Engine.stop();
+    $('#win-title').textContent = `${pl.name} hat gewonnen!`;
+    $('#win-list').innerHTML = [...G.st.players].sort((a, b) => b.cards - a.cards || b.jokers - a.jokers)
+      .map((p, i) => `<div>${i + 1}. <b>${esc(p.name)}</b> – ${p.cards} ${p.cards === 1 ? 'Karte' : 'Karten'}</div>`).join('');
+    P.show('win');
+  },
+
   handlers: {
     state(st) {
       const has = !!Engine.mode;
       $('#p-toggle').disabled = $('#p-restart').disabled = !has;
       $('#p-toggle').innerHTML = st === 'playing' ? ICON.pause + ' Pause' : st === 'ready' ? ICON.play + ' Abspielen' : ICON.play + ' Weiter';
       $('#p-eq').classList.toggle('on', st === 'playing');
-      if (st === 'playing') P.status('♪ Wann war das?');
-      if (st === 'paused') P.status(Engine.timeUp ? 'Zeit um! Wann war das?' : 'Pause');
-      if (st === 'ended') P.status('Lied zu Ende – nächste Karte!');
+      if (st === 'playing') P.status('Musik läuft');
+      if (st === 'paused') P.status(Engine.timeUp ? 'Zeit um!' : 'Pause');
+      if (st === 'ended') P.status('Lied zu Ende');
     },
     tick(t, el) {
       const total = Engine.mode === 'dz' ? 30 : cfg.stopAfter;
@@ -1011,24 +1276,53 @@ const P = {
     error(m) { P.status(m, true); },
     needTap(on) { document.body.classList.toggle('yt-tap', on); }
   },
+
+  /* --- Einstellungen (Zahnrad gedrückt halten) --- */
   openCfg() {
     $('#pc-rnd').checked = cfg.randomStart; $('#pc-min').value = cfg.rndMin; $('#pc-max').value = cfg.rndMax; $('#pc-stop').value = cfg.stopAfter;
     $$('#p-src button').forEach(b => b.classList.toggle('on', b.dataset.src === cfg.source));
     $$('#p-camsel button').forEach(b => b.classList.toggle('on', b.dataset.cam === cfg.cam));
+    const g = !!(G.st && !G.st.over && P.mode === 'game' && P.started);
+    $('#pc-game').classList.toggle('hidden', !g);
+    if (g) P.renderFix();
+    $('#pc-sol').textContent = Sol.src === 'songs.json' ? `Lösungen: ${Sol.count} Songs aus songs.json geladen.` : `Lösungen: keine songs.json gefunden – es werden ${Sol.count} Songs aus diesem Browser verwendet.`;
     $('#p-cfg').classList.remove('hidden');
+  },
+  renderFix() {
+    $('#pc-score').innerHTML = G.st.players.map((p, i) => `<div class="fixrow"><b>${esc(p.name)}</b>
+      Karten <button data-i="${i}" data-k="cards" data-d="-1">−</button> ${p.cards} <button data-i="${i}" data-k="cards" data-d="1">+</button>
+      Joker <button data-i="${i}" data-k="jokers" data-d="-1">−</button> ${p.jokers} <button data-i="${i}" data-k="jokers" data-d="1">+</button></div>`).join('');
   }
 };
-$('#p-go').onclick = () => P.start();
+$('#b-free').onclick = () => P.enter('free');
+$('#b-newgame').onclick = () => P.setup();
+$('#b-resume').onclick = () => P.enter('game');
+$('#b-addpl').onclick = () => { P.addPlayerRow(); const i = $$('#setup-names input').pop(); i && i.focus(); };
+$('#b-go').onclick = () => P.go();
+$('#b-setup-back').onclick = () => P.show('start');
+$('#b-reveal').onclick = () => P.reveal();
+$('#p-flip').onclick = () => P.reveal();
+$('#b-swap').onclick = () => P.swap();
+$('#b-next').onclick = () => P.next();
+$$('#judge .toggle').forEach(b => b.onclick = () => { b.classList.toggle('on'); P.judge[b.id === 'j-title' ? 't' : 'y'] = b.classList.contains('on'); });
+$('#b-win-new').onclick = () => { G.st = null; G.save(); P.stop(); P.setup(); };
+$('#b-win-start').onclick = () => { G.st = null; G.save(); P.stop(); };
 $('#p-toggle').onclick = () => Engine.mode && Engine.toggle();
 $('#p-restart').onclick = () => Engine.mode && Engine.restart();
-$('#p-back').onclick = () => { $('#p-cfg').classList.add('hidden'); P.stop(); location.hash = ''; };
+$('#p-back').onclick = () => { P.stop(); location.hash = ''; };
+$('#pc-score').addEventListener('click', e => {
+  const b = e.target.closest('button[data-i]'); if (!b) return;
+  const p = G.st.players[+b.dataset.i]; p[b.dataset.k] = Math.max(0, p[b.dataset.k] + +b.dataset.d);
+  G.save(); P.renderFix(); P.renderTurn();
+});
+$('#pc-end').onclick = () => { if (confirm('Spiel wirklich beenden? Der Punktestand wird gelöscht.')) { G.st = null; G.save(); P.stop(); } };
 $$('#p-src button').forEach(b => b.onclick = () => {
   cfg.source = b.dataset.src; saveCfg(); P.openCfg();
-  if (P.started && Engine.cur) P.playCard(Engine.cur);
+  if (P.view === 'card' && Engine.cur) P.playCard(Engine.cur);
 });
 $$('#p-camsel button').forEach(b => b.onclick = () => {
   cfg.cam = b.dataset.cam; saveCfg(); P.openCfg();
-  if (P.started) Scanner.start();
+  if (P.view === 'scan') Scanner.restart();
 });
 // Zahnrad nur durch Gedrückthalten öffnen – damit niemand aus Versehen etwas verstellt
 const gear = $('#p-gear'); let gearT;
@@ -1044,22 +1338,25 @@ $('#pc-close').onclick = () => {
   saveCfg(); $('#p-cfg').classList.add('hidden');
 };
 
-// Kamera läuft dauerhaft und sucht alle 0,2 s nach einer Karte
+// Kamera läuft nur auf der Scan-Seite und sucht alle 0,2 s nach einer Karte
 const Scanner = {
-  stream: null, timer: null, canvas: document.createElement('canvas'),
+  stream: null, timer: null, busy: false, canvas: document.createElement('canvas'),
   async start() {
-    this.stop();
+    if (this.stream || this.busy) return;
+    this.busy = true;
     const err = $('#p-camerr'), cam = $('#p-cam');
     err.classList.add('hidden'); cam.classList.remove('err');
     cam.classList.toggle('mirror', cfg.cam === 'user');
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: cfg.cam }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
     } catch (e) {
+      this.busy = false;
       err.textContent = window.isSecureContext ? 'Kein Zugriff auf die Kamera. Bitte in den Browser-Einstellungen erlauben und die Seite neu laden.' : 'Die Kamera funktioniert nur, wenn die Seite über https:// geöffnet ist.';
       err.classList.remove('hidden'); cam.classList.add('err');
       return;
     }
-    if (!P.started) return this.stop();
+    this.busy = false;
+    if (P.view !== 'scan') return this.stop(); // inzwischen weitergeklickt
     const v = $('#sc-video'); v.srcObject = this.stream; try { await v.play(); } catch (e) {}
     this.loop();
   },
@@ -1073,7 +1370,7 @@ const Scanner = {
       const ctx = c.getContext('2d', { willReadFrequently: true }); ctx.drawImage(v, 0, 0, w, h);
       const code = jsQR(ctx.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: 'dontInvert' });
       const p = code && parsePayload(code.data);
-      if (p) P.onScan(p);
+      if (p) { P.onScan(p, code.data); if (P.view !== 'scan') return; }
     }
     this.timer = setTimeout(() => this.loop(), 200);
   },
@@ -1081,12 +1378,13 @@ const Scanner = {
     clearTimeout(this.timer);
     if (this.stream) this.stream.getTracks().forEach(t => t.stop());
     this.stream = null; $('#sc-video').srcObject = null;
-  }
+  },
+  restart() { this.stop(); this.start(); }
 };
 // Tablet ausgeschaltet / App gewechselt: Kamera aus, Musik anhalten
 document.addEventListener('visibilitychange', () => {
   if (!P.started) return;
-  if (document.hidden) { Scanner.stop(); Engine.pause(); } else { Scanner.start(); wake(true); }
+  if (document.hidden) { Scanner.stop(); Engine.pause(); } else { if (P.view === 'scan') Scanner.start(); wake(true); }
 });
 
 /* ---------- Routing: #play bzw. Karten-Link → Spielmodus, sonst Editor ---------- */
@@ -1098,15 +1396,18 @@ function route() {
   if (play) {
     PV.close();
     if (p) {
+      const raw = location.href;
       history.replaceState(null, '', location.pathname + location.search + '#play');
-      if (P.started) P.playCard(p); else { P.pending = p; $('#p-go').textContent = '▶ Lied abspielen'; }
+      if (P.started) P.openCard(p, raw); else { P.pending = p; P.pendingRaw = raw; }
     }
+    if (!P.started) P.show('start');
   } else {
     if (P.started) P.stop();
     renderSongs();
   }
 }
 window.addEventListener('hashchange', route);
+Sol.load();
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(() => {});
 $('#file-warn').classList.toggle('hidden', location.protocol !== 'file:');
 showTab(LS.get('hs.tab', 'songs'));
