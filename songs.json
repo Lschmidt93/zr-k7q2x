@@ -1,0 +1,1476 @@
+{
+  "app": "hit-zeitreise",
+  "version": 1,
+  "songs": [
+    {
+      "id": "0rzk7pmy",
+      "artist": "Creedence Clearwater Revival",
+      "title": "Have You Ever Seen the Rain",
+      "year": 1970,
+      "yt": "Xwy-3aI435o",
+      "dz": "883644",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "azwbezaj",
+      "artist": "Lewis Capaldi",
+      "title": "Wish You The Best",
+      "year": 2023,
+      "yt": "tGQ98RW4ahM",
+      "dz": "2226982417",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ql861l6j",
+      "artist": "Genesis",
+      "title": "Invisible Touch",
+      "year": 1986,
+      "yt": "G5Qudk6W4Z8",
+      "dz": "14637100",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ttfffh47",
+      "artist": "Queen",
+      "title": "Another One Bites The Dust",
+      "year": 1980,
+      "yt": "b72gdhV_rXM",
+      "dz": "4092324041",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "5bmub2ed",
+      "artist": "Toto",
+      "title": "Hold the Line",
+      "year": 1978,
+      "yt": "ZP69PLBqFUo",
+      "dz": "1078779",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "wv2xqqsa",
+      "artist": "Journey",
+      "title": "Don't Stop Believin'",
+      "year": 1981,
+      "yt": "HNtlPdWoHe8",
+      "dz": "625643",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "p5ilt4se",
+      "artist": "Elton John",
+      "title": "I'm Still Standing",
+      "year": 1983,
+      "yt": "Ye9hGotPPVk",
+      "dz": "1171163",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "s60lo4mq",
+      "artist": "Soft Cell",
+      "title": "Tainted Love",
+      "year": 1981,
+      "yt": "22mYcScS_88",
+      "dz": "1173622",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "2wbng8ht",
+      "artist": "Survivor",
+      "title": "Eye of the Tiger",
+      "year": 1982,
+      "yt": "S-LO6dctBms",
+      "dz": "576431",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "vk4oz2qx",
+      "artist": "Whitney Houston",
+      "title": "I Wanna Dance With Somebody (Who Loves Me)",
+      "year": 1987,
+      "yt": "2dzf4T3RbEc",
+      "dz": "2795613",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "rbdhnkgx",
+      "artist": "Michael Jackson",
+      "title": "Beat It",
+      "year": 1982,
+      "yt": "WlTlUseVt7E",
+      "dz": "4763165",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "k4n6rnrc",
+      "artist": "George Michael",
+      "title": "Careless Whisper",
+      "year": 1984,
+      "yt": "4hzMRVY71hk",
+      "dz": "14525086",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ni1ui4ge",
+      "artist": "The Buggles",
+      "title": "Video Killed the Radio Star",
+      "year": 1979,
+      "yt": "LrjdpNDfZLo",
+      "dz": "2509817",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8k0h7bex",
+      "artist": "Madonna",
+      "title": "Material Girl",
+      "year": 1984,
+      "yt": "UZton86SuOg",
+      "dz": "723861",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "jxeu581j",
+      "artist": "Billy Joel",
+      "title": "Uptown Girl",
+      "year": 1983,
+      "yt": "H6M0EulApMM",
+      "dz": "1025659",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "6aaco5lk",
+      "artist": "U2",
+      "title": "I Still Haven't Found What I'm Looking For",
+      "year": 1987,
+      "yt": "-xrHR48LWwA",
+      "dz": "912481",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "3miy6dx9",
+      "artist": "Toto",
+      "title": "Africa",
+      "year": 1982,
+      "yt": "QAo_Ycocl1E",
+      "dz": "1079668",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "fbw2ffsw",
+      "artist": "Lewis Capaldi",
+      "title": "Someone You Loved",
+      "year": 2018,
+      "yt": "pRIZohFFOMo",
+      "dz": "582143242",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "4ax1ljdj",
+      "artist": "Katja Ebstein",
+      "title": "Theater",
+      "year": 1980,
+      "yt": "jLVkkAcHdxU",
+      "dz": "1048918",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "d8iigic8",
+      "artist": "Udo Jürgens",
+      "title": "Ich war noch niemals in New York",
+      "year": 1982,
+      "yt": "6TYP2i47kQ8",
+      "dz": "602261",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8at6hz6k",
+      "artist": "Udo Jürgens",
+      "title": "Griechischer Wein",
+      "year": 1974,
+      "yt": "eKveb4BjK_c",
+      "dz": "584325",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "hf4ztxq1",
+      "artist": "Comedian Harmonists",
+      "title": "Mein kleiner grüner Kaktus",
+      "year": 1934,
+      "yt": "2_LenqmgMYs",
+      "dz": "2034920187",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "uecsiiza",
+      "artist": "Helene Fischer",
+      "title": "Atemlos durch die Nacht",
+      "year": 2013,
+      "yt": "ZIjv7CVLFxA",
+      "dz": "72761680",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8hk375ae",
+      "artist": "GroßstadtEngel",
+      "title": "Gute Laune",
+      "year": 2025,
+      "yt": "2VEVTQNaG-w",
+      "dz": "3647291032",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "3la0r6bl",
+      "artist": "Udo Lindenberg & Apache 207",
+      "title": "Komet",
+      "year": 2023,
+      "yt": "rqvdfwo9TGc",
+      "dz": "2101670297",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "5gkun1jd",
+      "artist": "Udo Lindenberg",
+      "title": "Sonderzug nach Pankow",
+      "year": 1983,
+      "yt": "1oKKwuIZzr8",
+      "dz": "",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "cr23suwi",
+      "artist": "Silbermond",
+      "title": "Das Beste",
+      "year": 2006,
+      "yt": "0fB_Lxu6UhQ",
+      "dz": "15478334",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "oc0ngxl7",
+      "artist": "Silbermond",
+      "title": "Symphonie",
+      "year": 2004,
+      "yt": "8bNHTgVhdYM",
+      "dz": "15539388",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "aq5h78d3",
+      "artist": "Luxuslärm & Max Mutzke",
+      "title": "Bis es weh tut",
+      "year": 2016,
+      "yt": "kjkE9tck9Cw",
+      "dz": "120731358",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "17ju9icg",
+      "artist": "Max Mutzke",
+      "title": "Can't Wait Until Tonight",
+      "year": 2004,
+      "yt": "69FApCRX8zI",
+      "dz": "4123701281",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "zpb09d84",
+      "artist": "Santiano",
+      "title": "Lieder der Freiheit",
+      "year": 2015,
+      "yt": "aRbgxCPSeb8",
+      "dz": "99162780",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "z8sd72lp",
+      "artist": "The Animals",
+      "title": "The House of the Rising Sun",
+      "year": 1964,
+      "yt": "VixdIglCZXk",
+      "dz": "3155135",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "h9zs9ufb",
+      "artist": "Ray Charles",
+      "title": "Hit the Road Jack",
+      "year": 1961,
+      "yt": "uSiHqxgE2d0",
+      "dz": "62882810",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "e5ver1vm",
+      "artist": "Ben E. King",
+      "title": "Stand By Me",
+      "year": 1961,
+      "yt": "43YzIBTm5lE",
+      "dz": "136710424",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "hhoj8t8p",
+      "artist": "Dusty Springfield",
+      "title": "Son Of A Preacher Man",
+      "year": 1968,
+      "yt": "rcEWVdL_fIo",
+      "dz": "1104538",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "vgy5z3eu",
+      "artist": "Elvis Presley",
+      "title": "Suspicious Minds",
+      "year": 1969,
+      "yt": "4Zt8yLQTNqM",
+      "dz": "1055776",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "iyp6mw5g",
+      "artist": "Elvis Presley",
+      "title": "In The Ghetto",
+      "year": 1969,
+      "yt": "pdXKk8dcfqM",
+      "dz": "6596884",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "3kamzf77",
+      "artist": "Johannes Oerding & Michael Patrick Kelly",
+      "title": "Wolken",
+      "year": 2026,
+      "yt": "8QTV__y9VyI",
+      "dz": "3878593241",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "uzb0gi52",
+      "artist": "Johannes Oerding",
+      "title": "Engel",
+      "year": 2009,
+      "yt": "O-JLEyClLbY",
+      "dz": "5323007",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "i9h6qvbb",
+      "artist": "Michael Patrick Kelly",
+      "title": "Blurry Eyes",
+      "year": 2021,
+      "yt": "GnOSQi2GbBU",
+      "dz": "1532073762",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "kjtes7ur",
+      "artist": "The Kelly Family",
+      "title": "An Angel",
+      "year": 1994,
+      "yt": "ym6GBXy6mnc",
+      "dz": "363760541",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "j9hx7x1o",
+      "artist": "The Kelly Family",
+      "title": "Saban's Mystic Knights Of Tir Na Nog",
+      "year": 1999,
+      "yt": "bP3kadzqeTE",
+      "dz": "1741501477",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "15kuvkpq",
+      "artist": "Roxette",
+      "title": "It Must Have Been Love",
+      "year": 1987,
+      "yt": "lnl9U-hHp1I",
+      "dz": "3098301",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "1s5yhd7i",
+      "artist": "Genesis",
+      "title": "I Can't Dance",
+      "year": 1991,
+      "yt": "XLoAE3A_Amg",
+      "dz": "14637544",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ispi1e1d",
+      "artist": "The Beatles",
+      "title": "Let It Be",
+      "year": 1970,
+      "yt": "4Mafp9vjBhQ",
+      "dz": "116348656",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "x737m9ly",
+      "artist": "The Beatles",
+      "title": "Hey Jude",
+      "year": 1968,
+      "yt": "uNv_Bu_L6C8",
+      "dz": "116348632",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0yfudmf2",
+      "artist": "Sinéad O'Connor",
+      "title": "Nothing Compares 2 U",
+      "year": 1990,
+      "yt": "BqXCpmHPss8",
+      "dz": "1787569267",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "6pw62xge",
+      "artist": "Mr. President",
+      "title": "Coco Jamboo",
+      "year": 1996,
+      "yt": "_Jl-QpJNKiQ",
+      "dz": "1013287632",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "cq1pl04b",
+      "artist": "Rednex",
+      "title": "Cotton Eye Joe",
+      "year": 1994,
+      "yt": "JVzw6PDDoec",
+      "dz": "419139102",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "notgovfq",
+      "artist": "Rednex",
+      "title": "The Spirit of the Hawk",
+      "year": 2000,
+      "yt": "WFGhOkCzp2g",
+      "dz": "393003352",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "el02cgco",
+      "artist": "Safri Duo",
+      "title": "Played-A-Live (The Bongo Song)",
+      "year": 2000,
+      "yt": "o_ZBzGlYS6g",
+      "dz": "1399345572",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "arkm69df",
+      "artist": "Dermot Kennedy",
+      "title": "Giants",
+      "year": 2020,
+      "yt": "M_8S3LAb3GQ",
+      "dz": "997369132",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "p56jfumt",
+      "artist": "Nickelback",
+      "title": "How You Remind Me",
+      "year": 2001,
+      "yt": "vkvrbbtnp6s",
+      "dz": "71828723",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "5plh77n0",
+      "artist": "Florian Künstler",
+      "title": "Kleiner Finger Schwur",
+      "year": 2022,
+      "yt": "5xWz-dShQGg",
+      "dz": "2022023737",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "1130gtia",
+      "artist": "Knappe",
+      "title": "Nur bei dir bin ich sicher",
+      "year": 2018,
+      "yt": "I0Vtqax69KU",
+      "dz": "482000842",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "hqdfyl3m",
+      "artist": "Gnarls Barkley",
+      "title": "Crazy",
+      "year": 2006,
+      "yt": "vBtvhPM2GHc",
+      "dz": "2794160",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "563i15yt",
+      "artist": "Nathan Evans",
+      "title": "Wellerman",
+      "year": 2021,
+      "yt": "D458Eaql_aQ",
+      "dz": "1217037082",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "fr18ttjt",
+      "artist": "ABBA",
+      "title": "Super Trouper",
+      "year": 1980,
+      "yt": "cBjAZvpJDQs",
+      "dz": "884033",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "die7oelx",
+      "artist": "ABBA",
+      "title": "Mamma Mia",
+      "year": 1975,
+      "yt": "KMViJKmAV4M",
+      "dz": "884030",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "sqriym34",
+      "artist": "Carly Simon",
+      "title": "You're So Vain",
+      "year": 1972,
+      "yt": "o45J5CiskK8",
+      "dz": "766109",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "xedn314l",
+      "artist": "Foreigner",
+      "title": "Cold as Ice",
+      "year": 1977,
+      "yt": "iZ9jiHPQNwI",
+      "dz": "3659065",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0yivwygf",
+      "artist": "Fleetwood Mac",
+      "title": "Go Your Own Way",
+      "year": 1976,
+      "yt": "UJApxI8POFY",
+      "dz": "63480990",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "dywy79d9",
+      "artist": "Rod Stewart",
+      "title": "Sailing",
+      "year": 1975,
+      "yt": "N3QtCvQJ6hU",
+      "dz": "2550600",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "myxjgj4r",
+      "artist": "Roberta Flack",
+      "title": "Killing Me Softly With His Song",
+      "year": 1973,
+      "yt": "Z_FE7FbhdgI",
+      "dz": "14615242",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "4lrp1szb",
+      "artist": "Bruce Springsteen",
+      "title": "Born in the U.S.A.",
+      "year": 1984,
+      "yt": "tRx212PUa4g",
+      "dz": "15586213",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "32w9eiug",
+      "artist": "Andreas Bourani",
+      "title": "Auf uns",
+      "year": 2014,
+      "yt": "ybnJk_FlkdM",
+      "dz": "77045434",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "vflg1ki8",
+      "artist": "Wanda Jackson",
+      "title": "Let's Have A Party",
+      "year": 1958,
+      "yt": "m-7NEY4p5s0",
+      "dz": "3164214",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "9qzib24w",
+      "artist": "The Beatles",
+      "title": "Help!",
+      "year": 1965,
+      "yt": "MKUex3fci5c",
+      "dz": "116348610",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "29f02njc",
+      "artist": "The Weather Girls",
+      "title": "It's Raining Men",
+      "year": 1982,
+      "yt": "4x6leDGV7gs",
+      "dz": "555755",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "m3t4ecvy",
+      "artist": "Tom Jones & Mousse T.",
+      "title": "Sex Bomb",
+      "year": 1999,
+      "yt": "KfGHjjovIe8",
+      "dz": "2459527",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8z0wdw4j",
+      "artist": "The Supremes",
+      "title": "You Can't Hurry Love",
+      "year": 1966,
+      "yt": "uZj032MNIx4",
+      "dz": "79621446",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "fagamdwb",
+      "artist": "Pharrell Williams",
+      "title": "Happy",
+      "year": 2013,
+      "yt": "dJqxQzxLbHM",
+      "dz": "701326562",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "9y5xluk9",
+      "artist": "Village People",
+      "title": "Y.M.C.A.",
+      "year": 1978,
+      "yt": "7-F8wkjKWg8",
+      "dz": "3809086042",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "qw8aehih",
+      "artist": "David Bowie",
+      "title": "Let's Dance",
+      "year": 1983,
+      "yt": "gHlwJvPv9C0",
+      "dz": "730342602",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "4clbwqm9",
+      "artist": "Roland Kaiser & Maite Kelly",
+      "title": "Warum hast du nicht nein gesagt",
+      "year": 2014,
+      "yt": "_Oe3cqbGBaM",
+      "dz": "84206951",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "kehycq7m",
+      "artist": "Alcazar",
+      "title": "Crying at the Discoteque",
+      "year": 2000,
+      "yt": "oQAr1yjQSq4",
+      "dz": "106883562",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "93fgn9pg",
+      "artist": "Klaus Lage",
+      "title": "1000 und 1 Nacht (Zoom!)",
+      "year": 1984,
+      "yt": "s-Sqe30hn4U",
+      "dz": "2572286372",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "lnflg86a",
+      "artist": "Shakira feat. Freshlyground",
+      "title": "Waka Waka (This Time for Africa)",
+      "year": 2010,
+      "yt": "Z_slTWayFK0",
+      "dz": "68473089",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0xi376k1",
+      "artist": "Modern Talking",
+      "title": "Cheri Cheri Lady",
+      "year": 1985,
+      "yt": "c1ZCYY-4lAM",
+      "dz": "74249000",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "txk5l4bu",
+      "artist": "Los Del Río",
+      "title": "Macarena",
+      "year": 1993,
+      "yt": "Z7EsuR5I8SE",
+      "dz": "994491",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "70tnlsjn",
+      "artist": "Jennifer Lopez",
+      "title": "Let's Get Loud",
+      "year": 1999,
+      "yt": "feYwLT4DSDo",
+      "dz": "15475937",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "syo97e4z",
+      "artist": "Aqua",
+      "title": "Barbie Girl",
+      "year": 1997,
+      "yt": "77zog6Up_Yg",
+      "dz": "1115044",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "30ezvngn",
+      "artist": "Elvis Presley",
+      "title": "Jailhouse Rock",
+      "year": 1957,
+      "yt": "A99sV18J0mk",
+      "dz": "6596867",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ybnhbnb2",
+      "artist": "Boney M.",
+      "title": "Ma Baker",
+      "year": 1977,
+      "yt": "f3XcNskAxp0",
+      "dz": "1049893",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "vyix2bxz",
+      "artist": "DJ Ötzi & Nik P.",
+      "title": "Ein Stern (der deinen Namen trägt)",
+      "year": 2007,
+      "yt": "uMaoBvGPEvI",
+      "dz": "1139094",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "r3ceu7vs",
+      "artist": "Right Said Fred",
+      "title": "Stand Up (For the Champions)",
+      "year": 2002,
+      "yt": "OA89h2JQUB0",
+      "dz": "1125187992",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "tddsgvms",
+      "artist": "Walk the Moon",
+      "title": "Shut Up and Dance",
+      "year": 2014,
+      "yt": "GGsuLVlLObc",
+      "dz": "90326361",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "tcageuea",
+      "artist": "Extrabreit",
+      "title": "Flieger, grüß mir die Sonne",
+      "year": 1980,
+      "yt": "ket_mQVBGJk",
+      "dz": "1140787",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "b76861e9",
+      "artist": "Slade",
+      "title": "Run Runaway",
+      "year": 1983,
+      "yt": "sXus9nkgjsc",
+      "dz": "4097901871",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ls555pjj",
+      "artist": "The Pointer Sisters",
+      "title": "I'm So Excited",
+      "year": 1982,
+      "yt": "I57hkclh3kk",
+      "dz": "346967941",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8hweq5pi",
+      "artist": "Cher",
+      "title": "Strong Enough",
+      "year": 1998,
+      "yt": "ZhmLYsxhWUk",
+      "dz": "786748",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "dzysq9jl",
+      "artist": "OneRepublic",
+      "title": "Love Runs Out",
+      "year": 2014,
+      "yt": "iNa4oofjaSA",
+      "dz": "78527796",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "9b33rrdk",
+      "artist": "Howard Carpendale",
+      "title": "Ti amo",
+      "year": 1977,
+      "yt": "Yg4E4HZ4R6Y",
+      "dz": "3489487",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0o62afgf",
+      "artist": "Helga Feddersen & Dieter Hallervorden",
+      "title": "Du, die Wanne ist voll",
+      "year": 1978,
+      "yt": "-N_8Lr6YbTw",
+      "dz": "10495753",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "viltp0p2",
+      "artist": "Meghan Trainor",
+      "title": "Dear Future Husband",
+      "year": 2015,
+      "yt": "DcWZ-mb1InA",
+      "dz": "113420706",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "anb3dbgu",
+      "artist": "Henry Valentino & Uschi",
+      "title": "Im Wagen vor mir",
+      "year": 1977,
+      "yt": "VecD20hNKSw",
+      "dz": "5150017",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "flb6dq8k",
+      "artist": "Velile & Safri Duo",
+      "title": "Helele",
+      "year": 2010,
+      "yt": "nyRcYvxiJnE",
+      "dz": "6769385",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "j40civew",
+      "artist": "Die Ärzte",
+      "title": "Junge",
+      "year": 2007,
+      "yt": "gEJVuMPpJFA",
+      "dz": "1006111382",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "lud15ddl",
+      "artist": "Freddie Mercury & Montserrat Caballé",
+      "title": "Barcelona",
+      "year": 1987,
+      "yt": "DSWbZIRpmpU",
+      "dz": "4092336421",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "a3w8jwrg",
+      "artist": "Robbie Williams",
+      "title": "Let Me Entertain You",
+      "year": 1997,
+      "yt": "kzeK0V0amPQ",
+      "dz": "3087542",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "5zbte1sr",
+      "artist": "Van Halen",
+      "title": "Jump",
+      "year": 1983,
+      "yt": "bX9RMdcFQAw",
+      "dz": "97098410",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "kgvfodie",
+      "artist": "Rod Stewart & Tina Turner",
+      "title": "It Takes Two",
+      "year": 1990,
+      "yt": "BC9n5sQ4gYk",
+      "dz": "3167309",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "81qr7tpk",
+      "artist": "Santiano",
+      "title": "Es gibt nur Wasser",
+      "year": 2012,
+      "yt": "-RWKohWx8JQ",
+      "dz": "58104331",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "t5s54zp5",
+      "artist": "John Travolta & Olivia Newton-John",
+      "title": "You're The One That I Want",
+      "year": 1978,
+      "yt": "e__Pp4FxsjU",
+      "dz": "781563062",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "zvbunaru",
+      "artist": "Andrea Berg",
+      "title": "Du hast mich tausendmal belogen",
+      "year": 2001,
+      "yt": "t8zQyi61-wo",
+      "dz": "1008665",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "yobwobj5",
+      "artist": "Wolfgang Petry",
+      "title": "Wahnsinn",
+      "year": 1983,
+      "yt": "ExgfgiW-BJI",
+      "dz": "120358320",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "l8owlgom",
+      "artist": "Nico Haak",
+      "title": "Schmidtchen Schleicher",
+      "year": 1976,
+      "yt": "lys-LSSJJjs",
+      "dz": "105084160",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "us4tl4wj",
+      "artist": "Vicky Leandros",
+      "title": "Ich liebe das Leben",
+      "year": 1975,
+      "yt": "S7yiPm0OsfE",
+      "dz": "2322409",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "du5rmx2b",
+      "artist": "Die Ärzte",
+      "title": "Westerland",
+      "year": 1988,
+      "yt": "tIFFfP87Ooc",
+      "dz": "1095340122",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ildbz35i",
+      "artist": "Taylor Swift",
+      "title": "Shake It Off",
+      "year": 2014,
+      "yt": "sWMk8dwljFU",
+      "dz": "89077555",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "y54a3af7",
+      "artist": "Richard O'Brien",
+      "title": "The Time Warp",
+      "year": 1973,
+      "yt": "LApul_2xjEc",
+      "dz": "3288778561",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "4bhiup6n",
+      "artist": "Marianne Rosenberg",
+      "title": "Er gehört zu mir",
+      "year": 1975,
+      "yt": "vxP8oIqv-wI",
+      "dz": "2312569",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "xwzi2ft3",
+      "artist": "Smokie",
+      "title": "Who the F*** Is Alice",
+      "year": 1995,
+      "yt": "L4pp3qyq5tc",
+      "dz": "1495231812",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "pd0y8ts5",
+      "artist": "Torfrock",
+      "title": "Die Sonntagsjäger",
+      "year": 1978,
+      "yt": "RKha6JkaznM",
+      "dz": "61481092",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "qmt47u45",
+      "artist": "Peter Kraus",
+      "title": "Sugar Baby",
+      "year": 1958,
+      "yt": "3jayu9hVHi0",
+      "dz": "16638774",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "9yfd5zqd",
+      "artist": "Katy Perry",
+      "title": "Firework",
+      "year": 2010,
+      "yt": "M51-spaR4qk",
+      "dz": "17135111",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "1e4rri5l",
+      "artist": "Kiss",
+      "title": "I Was Made For Lovin' You",
+      "year": 1979,
+      "yt": "12fJAnaif34",
+      "dz": "2267042",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ltanagxf",
+      "artist": "The Beach Boys",
+      "title": "Barbara Ann",
+      "year": 1965,
+      "yt": "QypKWOzNdOs",
+      "dz": "2191480257",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "8gd5mfel",
+      "artist": "Scatman John",
+      "title": "Scatman (ski-ba-bop-ba-dop-bop)",
+      "year": 1994,
+      "yt": "Eht9W25tDZo",
+      "dz": "99360002",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "mbrfq8wk",
+      "artist": "The Weeknd",
+      "title": "Save Your Tears",
+      "year": 2020,
+      "yt": "RmYCOm4ehKs",
+      "dz": "908604632",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0nqiwfcw",
+      "artist": "The Kid LAROI & Justin Bieber",
+      "title": "Stay",
+      "year": 2021,
+      "yt": "XfEMj-z3TtA",
+      "dz": "1425844092",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "o4j4gp9l",
+      "artist": "Olivia Rodrigo",
+      "title": "drivers license",
+      "year": 2021,
+      "yt": "l0txe6yk8Kc",
+      "dz": "1378342592",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ek4u0uh4",
+      "artist": "Billie Eilish",
+      "title": "Happier Than Ever",
+      "year": 2021,
+      "yt": "NSTUVHsb9xw",
+      "dz": "1449740592",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "03wd9nuv",
+      "artist": "Ellie Goulding",
+      "title": "Lights",
+      "year": 2010,
+      "yt": "LPVBLA8Kedk",
+      "dz": "1762914957",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "0eltemch",
+      "artist": "Ellie Goulding",
+      "title": "Flux",
+      "year": 2019,
+      "yt": "_m7wj1D1dgI",
+      "dz": "638477942",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "uaa0oj8o",
+      "artist": "P!nk",
+      "title": "Cover Me In Sunshine",
+      "year": 2021,
+      "yt": "sD3a66DDhHs",
+      "dz": "1236886172",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "hghtbxc2",
+      "artist": "P!nk",
+      "title": "TRUSTFALL",
+      "year": 2023,
+      "yt": "VVPFfjYaTpw",
+      "dz": "2148022517",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ljrtsk9y",
+      "artist": "P!nk",
+      "title": "Dear Mr. President",
+      "year": 2006,
+      "yt": "gcMtvAjcTqo",
+      "dz": "5223989",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "ubxt78be",
+      "artist": "Zoe Wees",
+      "title": "Girls Like Us",
+      "year": 2021,
+      "yt": "ao4giEvkV0U",
+      "dz": "1200430692",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "e576v3us",
+      "artist": "Zoe Wees",
+      "title": "Control",
+      "year": 2020,
+      "yt": "px6a_jJrvik",
+      "dz": "898849382",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "w10q359s",
+      "artist": "Leony",
+      "title": "Faded Love",
+      "year": 2021,
+      "yt": "2gxzd9ASXuI",
+      "dz": "1162977772",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "9lbaf4a3",
+      "artist": "Glass Animals",
+      "title": "Heat Waves",
+      "year": 2020,
+      "yt": "XDjB9E3YtUE",
+      "dz": "1040154662",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "xy308fi3",
+      "artist": "Dua Lipa",
+      "title": "Levitating",
+      "year": 2020,
+      "yt": "UbPrlq52r7Y",
+      "dz": "1122003492",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "gzb43zba",
+      "artist": "Avicii",
+      "title": "Wake Me Up",
+      "year": 2013,
+      "yt": "2NiyrtYegso",
+      "dz": "70266756",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "7iivyvof",
+      "artist": "Miley Cyrus",
+      "title": "Wrecking Ball",
+      "year": 2013,
+      "yt": "iqXxfOnk-Z4",
+      "dz": "71137166",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "54hsrbm6",
+      "artist": "Madcon",
+      "title": "Beggin",
+      "year": 2007,
+      "yt": "DtacDHriV0o",
+      "dz": "16351691",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "i45rdeau",
+      "artist": "Mark Forster & LEA",
+      "title": "Drei Uhr Nachts",
+      "year": 2021,
+      "yt": "t9kLT2N5A08",
+      "dz": "1288053342",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "yxjbpc0z",
+      "artist": "LEA",
+      "title": "Leiser",
+      "year": 2017,
+      "yt": "-JcZO7usFsg",
+      "dz": "589119122",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "yevrcvb3",
+      "artist": "Ava Max",
+      "title": "Sweet but Psycho",
+      "year": 2018,
+      "yt": "ttznokjeSnw",
+      "dz": "539562302",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "73c2za82",
+      "artist": "Alvaro Soler",
+      "title": "La Cintura",
+      "year": 2018,
+      "yt": "IOFyEbXzFKs",
+      "dz": "675340022",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "hc9hv9v7",
+      "artist": "Juanes",
+      "title": "La camisa negra",
+      "year": 2004,
+      "yt": "o-WMnjU4S9E",
+      "dz": "1155001",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "jlzs7oxw",
+      "artist": "Falco",
+      "title": "Out Of The Dark",
+      "year": 1998,
+      "yt": "Tod1V1OZWGA",
+      "dz": "13569299",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "7numdf03",
+      "artist": "Falco",
+      "title": "Rock Me Amadeus",
+      "year": 1985,
+      "yt": "AIgq2VCfkw4",
+      "dz": "542016",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "vmu2fpuw",
+      "artist": "Philipp Poisel",
+      "title": "Eiserner Steg",
+      "year": 2011,
+      "yt": "yfxIUHxa_kk",
+      "dz": "1754064147",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "n7zyj6x1",
+      "artist": "Philipp Poisel",
+      "title": "Ich will nur",
+      "year": 2010,
+      "yt": "91PTbmuzdFQ",
+      "dz": "1760757287",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "odglj6ph",
+      "artist": "Otto Waalkes",
+      "title": "Wir haben Grund zum Feiern",
+      "year": 2002,
+      "yt": "yfkVcAR4W2o",
+      "dz": "3434457701",
+      "start": "",
+      "yearAuto": false
+    },
+    {
+      "id": "o11a9em5",
+      "artist": "Knappe",
+      "title": "Du",
+      "year": 2018,
+      "yt": "8hiG5S7P8M4",
+      "dz": "482000782",
+      "start": "",
+      "yearAuto": false
+    }
+  ]
+}
